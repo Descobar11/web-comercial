@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proingen — Soluciones en PVC para Piscinas e Industria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #112240;
+      --blue: #1a4a8a;
+      --accent: #00b4d8;
+      --accent2: #90e0ef;
+      --white: #f8fafc;
+      --gray: #94a3b8;
+      --light: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,180,216,0.1);
+    }
+
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; color: var(--white); }
+    .logo span { color: var(--accent); }
+
+    nav ul { display: flex; gap: 2.5rem; list-style: none; }
+    nav ul a { color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+    nav ul a:hover { color: var(--accent); }
+
+    .nav-cta { background: var(--accent); color: var(--navy) !important; padding: 0.55rem 1.4rem; border-radius: 50px; font-weight: 700 !important; transition: background 0.2s, transform 0.2s !important; }
+    .nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px); }
+
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 7rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(26,74,138,0.35) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,180,216,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid-overlay {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,180,216,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,180,216,0.04) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,180,216,0.12); border: 1px solid rgba(0,180,216,0.3);
+      border-radius: 50px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 500; color: var(--accent);
+      margin-bottom: 1.8rem; letter-spacing: 0.5px;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.3 } }
+
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-sub { font-size: 1.1rem; color: var(--gray); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary { background: var(--accent); color: var(--navy); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,180,216,0.3); }
+
+    .btn-secondary { border: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: var(--gray); margin-top: 0.2rem; }
+
+    .hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    .hero-card-stack { position: relative; width: 380px; height: 420px; overflow: hidden; }
+    .hcard { position: absolute; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+    .hcard-main { width: 320px; height: 360px; top: 30px; left: 30px; background: linear-gradient(135deg, #1a4a8a 0%, #0a1628 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+    .hcard-main::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3CradialGradient id='g' cx='60%25' cy='40%25'%3E%3Cstop offset='0%25' stop-color='%2300b4d8' stop-opacity='0.2'/%3E%3Cstop offset='100%25' stop-color='transparent'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='400' height='400'/%3E%3C/svg%3E"); }
+    .pool-icon { font-size: 5rem; position: absolute; top: 2rem; right: 2rem; opacity: 0.15; }
+    .hcard-main h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; position: relative; z-index: 1; }
+    .hcard-main p { font-size: 0.85rem; color: var(--accent2); position: relative; z-index: 1; }
+    .hcard-float { width: 180px; background: rgba(0,180,216,0.1); backdrop-filter: blur(20px); border: 1px solid rgba(0,180,216,0.25); padding: 1.2rem; border-radius: 16px; top: 0; left: 0; }
+    .hcard-float .f-label { font-size: 0.7rem; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .hcard-float .f-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; }
+    .hcard-badge { bottom: 0; right: 0; background: var(--accent); color: var(--navy); padding: 1rem 1.3rem; border-radius: 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; text-align: center; width: 130px; }
+
+    section { padding: 6rem 4rem; }
+
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+
+    h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+
+    .productos { background: var(--navy-mid); }
+    .productos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+    .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+    .prod-card {
+      background: var(--navy); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden; cursor: pointer;
+    }
+    .prod-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,180,216,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+    .prod-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
+    .prod-card:hover::before { opacity: 1; }
+    .prod-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.7rem; }
+    .prod-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    .ver-mas {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); border: 1px solid rgba(0,180,216,0.3);
+      border-radius: 50px; padding: 0.4rem 1rem;
+      transition: all 0.2s; background: rgba(0,180,216,0.05);
+    }
+    .prod-card:hover .ver-mas { background: rgba(0,180,216,0.15); border-color: var(--accent); }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(5,12,25,0.88); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--navy-mid); border: 1px solid rgba(0,180,216,0.15);
+      border-radius: 24px; width: 100%; max-width: 800px;
+      max-height: 90vh; overflow-y: auto;
+      position: relative; animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform: translateY(20px) scale(0.97); } to { opacity:1; transform:none; } }
+
+    .modal-img { width: 100%; height: 260px; object-fit: cover; border-radius: 24px 24px 0 0; display: block; }
+
+    .modal-body { padding: 2.5rem; }
+
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: rgba(0,0,0,0.5); border: none; color: var(--white);
+      width: 2.2rem; height: 2.2rem; border-radius: 50%;
+      font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 10;
+    }
+    .modal-close:hover { background: rgba(0,180,216,0.4); }
+
+    .modal-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+
+    .modal h3 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 1rem; }
+
+    .modal-desc { color: var(--gray); line-height: 1.8; font-size: 0.95rem; margin-bottom: 2rem; }
+
+    .modal-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+    /* Image gallery inside modal */
+    .modal-gallery { display: grid; gap: 0.8rem; margin-bottom: 2rem; }
+    .modal-gallery.one-img { grid-template-columns: 1fr; }
+    .modal-gallery.two-img { grid-template-columns: 1fr 1fr; }
+    .modal-gallery.three-img { grid-template-columns: 1fr 1fr; }
+    .modal-gallery.three-img .gallery-img:first-child { grid-column: span 2; }
+    .gallery-img { width: 100%; border-radius: 14px; object-fit: cover; height: 200px; border: 1px solid rgba(255,255,255,0.06); }
+    .modal-gallery.one-img .gallery-img { height: 260px; }
+
+    .modal-col-box { background: var(--navy); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem; }
+
+    .modal-col-box h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0,180,216,0.15); }
+
+    .modal-col-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .modal-col-box ul li { font-size: 0.85rem; color: var(--gray); line-height: 1.5; padding-left: 1.2rem; position: relative; }
+    .modal-col-box ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+    .modal-nota { font-size: 0.82rem; color: var(--gray); background: rgba(0,180,216,0.06); border: 1px solid rgba(0,180,216,0.12); border-radius: 12px; padding: 1rem 1.2rem; line-height: 1.6; }
+
+    .porque { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .porque-left h2 { margin-bottom: 1.5rem; }
+    .porque-left p { color: var(--gray); line-height: 1.8; margin-bottom: 2rem; font-size: 1rem; }
+    .porque-items { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .porque-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--navy-mid); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); transition: border-color 0.2s; }
+    .porque-item:hover { border-color: rgba(0,180,216,0.2); }
+    .pi-icon { font-size: 1.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; background: rgba(0,180,216,0.1); border-radius: 10px; }
+    .pi-text h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .pi-text p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; }
+
+    .porque-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 2rem; text-align: center; }
+    .stat-card:first-child { grid-column: span 2; background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(26,74,138,0.3)); border-color: rgba(0,180,216,0.2); }
+    .stat-card .big { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); }
+    .stat-card .label { font-size: 0.85rem; color: var(--gray); margin-top: 0.3rem; }
+
+    .contacto { background: var(--navy-mid); text-align: center; }
+    .contacto h2 { margin-bottom: 1rem; }
+    .contacto p { color: var(--gray); max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
+    .contacto-cards { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .contact-card {
+      background: var(--navy); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 2rem 2.5rem;
+      transition: all 0.3s; text-decoration: none; color: var(--white);
+      min-width: 220px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .contact-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-3px); }
+
+    /* Fixed Instagram icon container */
+    .cc-icon { font-size: 2rem; margin-bottom: 0.8rem; line-height: 1; }
+    .cc-icon-img {
+      width: 2rem; height: 2rem;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .cc-label { font-size: 0.75rem; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .cc-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; }
+
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: #25d366; color: #fff; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.2s; }
+    .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+
+    footer { padding: 2.5rem 4rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+    footer .logo { font-size: 1.1rem; }
+    footer p { font-size: 0.8rem; color: var(--gray); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; overflow: hidden; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 1.5rem; overflow: hidden; }
+      .productos-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .productos-grid { grid-template-columns: 1fr; }
+      .porque { grid-template-columns: 1fr; gap: 3rem; }
+      .porque-right { grid-template-columns: 1fr 1fr; }
+      .stat-card:first-child { grid-column: span 2; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+      .contacto-cards { flex-direction: column; align-items: center; }
+      .contact-card { min-width: unset; width: 100%; max-width: 320px; }
+      .modal-cols { grid-template-columns: 1fr; }
+      .modal-gallery.two-img { grid-template-columns: 1fr; }
+      .modal-gallery.three-img { grid-template-columns: 1fr; }
+      .modal-gallery.three-img .gallery-img:first-child { grid-column: span 1; }
+      .modal-body { padding: 1.5rem; }
+      .modal h3 { font-size: 1.3rem; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* WhatsApp flotante */
+    .wa-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 999;
+      width: 58px; height: 58px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-tooltip {
+      position: absolute; right: 70px; top: 50%; transform: translateY(-50%);
+      background: var(--navy-mid); color: var(--white);
+      font-size: 0.8rem; font-weight: 500; white-space: nowrap;
+      padding: 0.45rem 0.9rem; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .wa-float:hover .wa-tooltip { opacity: 1; }
+
+    /* FAQ */
+    .faq { background: var(--navy); }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header h2 { margin-bottom: 0.6rem; }
+    .faq-header p { color: var(--gray); font-size: 0.95rem; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.8rem; }
+    .faq-item {
+      background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: rgba(0,180,216,0.25); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700;
+      text-align: left; padding: 1.3rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; gap: 1rem;
+    }
+    .faq-q .faq-arrow {
+      min-width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; color: var(--accent);
+      transition: transform 0.3s, background 0.2s;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); background: rgba(0,180,216,0.2); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      font-size: 0.88rem; color: var(--gray); line-height: 1.75;
+      padding: 0 1.5rem;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.3rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" style="display:flex;align-items:center;">
+      <img src="https://i.imgur.com/iRurkDU.png" alt="Comercial Proingen" style="height:42px;width:42px;object-fit:contain;filter:invert(1);border-radius:50%;" />
+    </a>
+    <ul>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Cotizar →</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-text fade-in">
+      <div class="hero-badge">Fabricación en Santiago · Envíos a todo Chile</div>
+      <h1>Cobertores y<br>soluciones en<br><em>PVC a medida</em></h1>
+      <p class="hero-sub">Fabricamos cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más — adaptados exactamente a las necesidades de cada cliente.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">Cotizar ahora →</a>
+        <a href="#productos" class="btn-secondary">Ver productos</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">+10</div><div class="stat-label">Años de experiencia</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-label">A medida</div></div>
+        <div><div class="stat-num">Chile</div><div class="stat-label">Cobertura nacional</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;position:relative;z-index:2;">
+        <img src="https://i.imgur.com/iRurkDU.png" alt="Comercial Proingen" style="width:280px;height:280px;object-fit:contain;filter:invert(1) drop-shadow(0 0 40px rgba(0,180,216,0.25));opacity:0.92;" />
+      </div>
+      <div class="hero-card-stack" style="position:absolute;bottom:-2rem;right:0;opacity:0.5;pointer-events:none;transform:scale(0.75);transform-origin:bottom right;">
+        <div class="hcard hcard-main">
+          <div class="pool-icon">🏊</div>
+          <h3>Cobertor de Seguridad</h3>
+          <p>Fabricado en PVC de alta resistencia</p>
+        </div>
+        <div class="hcard hcard-float">
+          <div class="f-label">Calidad</div>
+          <div class="f-val">PVC Pro</div>
+        </div>
+        <div class="hcard hcard-badge">✓ A medida<br>tu proyecto</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="productos" id="productos">
+    <div class="productos-header fade-in">
+      <div>
+        <div class="section-label">Lo que fabricamos</div>
+        <h2>Nuestros productos</h2>
+      </div>
+      <a href="#contacto" class="btn-secondary">Solicitar cotización →</a>
+    </div>
+    <div class="productos-grid">
+      <div class="prod-card fade-in" onclick="openModal('modal-cobertores')">
+        <img src="https://i.imgur.com/rf0JzfX.jpeg" alt="Cobertor piscina" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Cobertores de seguridad para piscinas</h3>
+        <p>Fabricados en lona PVC de alta resistencia, adaptados a la medida exacta de cada piscina.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+      <div class="prod-card fade-in" onclick="openModal('modal-termicos')">
+        <img src="https://i.imgur.com/rOuutfY.jpeg" alt="Separadores térmicos" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Separadores térmicos para camión</h3>
+        <p>Cortinas interiores que dividen la carga de distintas temperaturas en camiones de reparto.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+      <div class="prod-card fade-in" onclick="openModal('modal-ascensor')">
+        <img src="https://i.imgur.com/FQz3zCq.jpeg" alt="Protectores ascensor" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Protectores para cabina de ascensor</h3>
+        <p>Fundas en PVC y telas técnicas que protegen las paredes interiores del ascensor.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+      <div class="prod-card fade-in" onclick="openModal('modal-cortinas')">
+        <img src="https://i.imgur.com/x7ZYbHE.jpeg" alt="Cortinas separadoras" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Cortinas separadoras</h3>
+        <p>Separan áreas de trabajo manteniendo facilidad de paso y total visibilidad.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+      <div class="prod-card fade-in" onclick="openModal('modal-techos')">
+        <img src="https://i.imgur.com/vJ6435Q.jpeg" alt="Techo para faena" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Techos para faena</h3>
+        <p>Cubiertas para obras y faenas industriales, resistentes y adaptables.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+      <div class="prod-card fade-in" onclick="openModal('modal-especiales')">
+        <img src="https://i.imgur.com/5LB1ndT.jpeg" alt="Proyectos especiales" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <h3>Proyectos especiales</h3>
+        <p>Cualquier solución en tela PVC o lona técnica según los requerimientos de su proyecto.</p>
+        <span class="ver-mas">Ver más →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL COBERTORES -->
+  <div class="modal-overlay" id="modal-cobertores">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-cobertores')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/rf0JzfX.jpeg" alt="Cobertor piscina" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Cobertores de seguridad para piscinas</h3>
+        <p class="modal-desc">Nuestros cobertores ofrecen protección completa para piscinas de cualquier forma y tamaño. Fabricados en malla de poliéster recubierta en PVC, son resistentes al sol, la lluvia y el viento. Evitan accidentes, reducen la evaporación del agua y mantienen la piscina limpia durante todo el año.</p>
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege de caídas accidentales de personas y mascotas</li>
+              <li>Mantiene la piscina limpia de hojas y suciedad</li>
+              <li>Evita la pérdida de temperatura del agua</li>
+              <li>Reduce costos de mantención y productos químicos</li>
+              <li>Evita la evaporación del agua</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Malla de poliéster recubierta en PVC</li>
+              <li>Protección UV</li>
+              <li>Soporta más de 100 kg</li>
+              <li>Anclajes a ras de piso y perillas removibles</li>
+              <li>Fabricación a medida según cada piscina</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">📐 Para cotizar, indícanos las medidas internas (agua) y forma de tu piscina. Contáctanos por WhatsApp o email y te enviamos una cotización formal sin costo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TÉRMICOS -->
+  <div class="modal-overlay" id="modal-termicos">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-termicos')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/rOuutfY.jpeg" alt="Separadores térmicos" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Separadores térmicos para camión</h3>
+        <p class="modal-desc">Cortinas interiores diseñadas para dividir la carga en camiones de reparto multitemperatura. Permiten transportar productos que requieren distintas condiciones en un mismo vehículo, optimizando costos y tiempos de distribución.</p>
+
+        <!-- Ficha técnica ST-PRO -->
+        <div class="modal-col-box" style="margin-bottom:1.5rem;">
+          <h4 style="display:flex;align-items:center;gap:0.6rem;">
+            <span style="background:var(--accent);color:var(--navy);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:50px;letter-spacing:1px;">MODELO</span>
+            ST-PRO
+          </h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem;margin-top:0.8rem;">
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Construcción panel</span>
+              EPS protegido y recubierto PVC 18 oz
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Paneles</span>
+              2
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Manillas</span>
+              8 (4 por cada panel)
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Bisagra central</span>
+              PVC
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Protector inferior</span>
+              PVC alta resistencia
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Contorno</span>
+              Espuma PU ajustable para mayor sello
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Transporta productos a distintas temperaturas</li>
+              <li>Reduce costos operativos de distribución</li>
+              <li>Fácil instalación y remoción</li>
+              <li>Adaptable a cualquier modelo de camión</li>
+              <li>Aumenta la vida útil de los productos transportados</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Lona PVC de alta resistencia térmica</li>
+              <li>Sistema de fijación con velcro o correas</li>
+              <li>Fabricación a medida del compartimento</li>
+              <li>Disponible en distintos espesores</li>
+              <li>Lavable y de fácil mantención</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">🚚 Fabricamos según las medidas internas de tu camión. Contáctanos con las dimensiones del compartimento y te cotizamos sin compromiso.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ASCENSOR -->
+  <div class="modal-overlay" id="modal-ascensor">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-ascensor')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/FQz3zCq.jpeg" alt="Protectores ascensor" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Protectores para cabina de ascensor</h3>
+        <p class="modal-desc">En cada mudanza, entrega o traslado de materiales, el ascensor de tu edificio enfrenta riesgos invisibles pero costosos: rayas, golpes y daños que afectan su imagen, su valor… y tu tranquilidad como administrador.</p>
+        <p class="modal-desc" style="margin-top:-1rem;">En Proingen entendemos lo que significa mantener un edificio en perfecto estado: la presión de los residentes, el cuidado del patrimonio común y la necesidad de soluciones prácticas y efectivas. Por eso diseñamos protectores resistentes, fáciles de instalar y de transportar, que no solo protegen el acero y los espejos del ascensor, sino que protegen también tu reputación y el bienestar de quienes viven o trabajan en el edificio.</p>
+        <p class="modal-desc" style="margin-top:-1rem; font-style:italic; color: var(--accent2);">No se trata solo de un protector. Se trata de mostrar gestión, previsión y cuidado por cada detalle.</p>
+
+        <!-- Galería de imágenes adicionales -->
+        <div class="modal-gallery one-img">
+          <img class="gallery-img" src="https://i.imgur.com/rbHu5hq.jpeg" alt="Protector ascensor instalado" />
+        </div>
+
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege paredes, espejos y puertas del ascensor</li>
+              <li>Evita costosas reparaciones post-obra</li>
+              <li>Fácil instalación sin herramientas</li>
+              <li>Reutilizable en múltiples proyectos</li>
+              <li>Ideal para administradores, constructoras y empresas de mudanza</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Tela técnica acolchada de alta resistencia</li>
+              <li>Sistema de fijación con imanes o velcro</li>
+              <li>Fabricación a medida de cada cabina</li>
+              <li>Disponible en distintos colores</li>
+              <li>Resistente a impactos y abrasión</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">🏗️ Indícanos las medidas de tu cabina y el tipo de superficie a proteger. Te enviamos una cotización en menos de 24 horas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CORTINAS -->
+  <div class="modal-overlay" id="modal-cortinas">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-cortinas')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/x7ZYbHE.jpeg" alt="Cortinas separadoras" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Cortinas separadoras</h3>
+        <p class="modal-desc">Solución eficiente para dividir espacios en bodegas, talleres, plantas industriales y oficinas. Nuestras cortinas en PVC transparente o lona permiten separar áreas de trabajo manteniendo visibilidad y tránsito fluido entre zonas.</p>
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Divide espacios sin obra ni construcción</li>
+              <li>Mantiene visibilidad entre zonas</li>
+              <li>Permite paso fácil de personas y maquinaria</li>
+              <li>Reduce ruido y polvo entre áreas</li>
+              <li>Instalación rápida sin daños al inmueble</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>PVC transparente o lona según necesidad</li>
+              <li>Sistema de riel deslizante o fijo</li>
+              <li>Fabricación a medida del espacio</li>
+              <li>Resistente a temperaturas extremas</li>
+              <li>Fácil limpieza y mantención</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">🏭 Cuéntanos las dimensiones del espacio a dividir y el tipo de uso. Te asesoramos en la mejor solución para tu proyecto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TECHOS -->
+  <div class="modal-overlay" id="modal-techos">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-techos')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/vJ6435Q.jpeg" alt="Techos para faena" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Techos para faena</h3>
+        <p class="modal-desc">Cubiertas en lona PVC de alto gramaje para proteger obras, faenas industriales y áreas de trabajo a la intemperie. Resistentes a la lluvia, el viento y el sol, son la solución ideal para mantener las condiciones de trabajo en cualquier clima.</p>
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege materiales y equipos de la lluvia y el sol</li>
+              <li>Permite continuar trabajos en días de mal tiempo</li>
+              <li>Fácil montaje sobre estructuras existentes</li>
+              <li>Resistente a vientos fuertes</li>
+              <li>Reutilizable en distintas obras</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Lona PVC de alto gramaje (600–900 g/m²)</li>
+              <li>Tratamiento UV y anti-hongos</li>
+              <li>Ojales reforzados para sujeción</li>
+              <li>Fabricación a medida del área</li>
+              <li>Disponible en distintos colores</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">⛺ Indícanos las dimensiones y el tipo de estructura donde se instalará. Fabricamos según tus requerimientos específicos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ESPECIALES -->
+  <div class="modal-overlay" id="modal-especiales">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-especiales')">✕</button>
+      <img class="modal-img" src="https://i.imgur.com/5LB1ndT.jpeg" alt="Proyectos especiales" />
+      <div class="modal-body">
+        <div class="modal-label">Producto</div>
+        <h3>Proyectos especiales</h3>
+        <p class="modal-desc">En Proingen fabricamos cualquier solución en tela PVC, lona técnica o materiales especializados. Si tienes un requerimiento que no encaja en nuestros productos estándar, cuéntanos tu idea y desarrollamos una solución a medida para tu empresa o proyecto.</p>
+        <div class="modal-cols">
+          <div class="modal-col-box">
+            <h4>Ejemplos de proyectos</h4>
+            <ul>
+              <li>Carpas industriales de grandes dimensiones</li>
+              <li>Fundas protectoras para maquinaria</li>
+              <li>Coberturas para piscinas de formas irregulares</li>
+              <li>Soluciones para agricultura y minería</li>
+              <li>Cualquier solución en PVC a pedido</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Nuestro proceso</h4>
+            <ul>
+              <li>Asesoría técnica sin costo</li>
+              <li>Diseño y presupuesto personalizados</li>
+              <li>Fabricación en taller propio en Santiago</li>
+              <li>Control de calidad en cada etapa</li>
+              <li>Despacho a todo Chile</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-nota">⚙️ ¿Tienes un proyecto fuera de lo común? Cuéntanos qué necesitas y lo desarrollamos. Hemos fabricado soluciones para industrias, minería, agricultura y más.</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="nosotros">
+    <div class="porque">
+      <div class="porque-left fade-in">
+        <div class="section-label">Por qué elegirnos</div>
+        <h2>Fabricación directa,<br>sin intermediarios</h2>
+        <p>En Proingen fabricamos nosotros mismos cada producto, lo que nos permite adaptarnos a cada cliente — sin importar el tamaño del proyecto.</p>
+        <div class="porque-items">
+          <div class="porque-item">
+            <div class="pi-icon">📐</div>
+            <div class="pi-text"><h4>100% a medida</h4><p>Cada producto se fabrica según las dimensiones y requerimientos exactos del cliente.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🏭</div>
+            <div class="pi-text"><h4>Fabricación propia en Santiago</h4><p>Taller propio con materiales de calidad. Control total del proceso productivo.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🤝</div>
+            <div class="pi-text"><h4>Todos los clientes importan</h4><p>Atendemos con la misma dedicación a particulares, pymes y grandes industrias.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🚚</div>
+            <div class="pi-text"><h4>Envíos a todo Chile</h4><p>Despachamos a regiones. También contamos con retiro en Santiago.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="porque-right fade-in">
+        <div class="stat-card"><div class="big">+500</div><div class="label">Proyectos entregados</div></div>
+        <div class="stat-card"><div class="big">10+</div><div class="label">Años en el mercado</div></div>
+        <div class="stat-card"><div class="big">100%</div><div class="label">A medida</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="faq-header fade-in">
+      <div class="section-label">Dudas frecuentes</div>
+      <h2>Preguntas frecuentes</h2>
+      <p>Todo lo que necesitas saber antes de cotizar</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto demora la fabricación?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">El plazo depende del tipo y tamaño del producto. En general, los cobertores de piscina y protectores de ascensor están listos en 5 a 10 días hábiles desde que se confirma la cotización. Para proyectos de mayor volumen o complejidad, coordinamos los plazos directamente con el cliente.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo tomo las medidas de mi piscina o ascensor?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Para piscinas, necesitamos las medidas internas del agua (largo y ancho) y la forma (rectangular, irregular, etc.). Para cabinas de ascensor, el ancho, fondo y alto de cada pared interior. Si tienes dudas, contáctanos por WhatsApp y te guiamos paso a paso sin costo.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Hacen despacho a regiones?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí. Despachamos a todo Chile a través de empresas de transporte. El costo y tiempo de envío depende de la región y el tamaño del pedido. También puedes retirar en Santiago sin costo adicional. Al cotizar, te informamos las opciones disponibles.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿La cotización tiene algún costo?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">No. La cotización es completamente gratuita y sin compromiso. Solo necesitamos las medidas y el tipo de producto que necesitas. Respondemos dentro de 24 horas hábiles con un presupuesto formal.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo pedir algo que no está en el catálogo?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí, fabricamos proyectos especiales a medida. Si tienes un requerimiento específico en PVC, lona técnica u otros materiales, cuéntanos tu idea y lo evaluamos. Hemos trabajado para la industria, minería, agricultura y construcción con soluciones completamente personalizadas.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué formas de pago aceptan?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Aceptamos transferencia bancaria. Para pedidos de empresas o proyectos grandes, coordinamos las condiciones de pago directamente. Contáctanos para más detalles según tu situación.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Dónde están ubicados?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Fabricamos en Santiago. Nuestras ventas y coordinación se realizan de forma remota — por WhatsApp, email o redes sociales — lo que nos permite atender clientes en todo Chile de manera ágil y sin intermediarios.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="section-label">Hablemos</div>
+    <h2>¿Tienes un proyecto en mente?</h2>
+    <p>Cuéntanos qué necesitas y te enviamos una cotización sin costo. Respondemos dentro de 24 horas.</p>
+    <div class="contacto-cards">
+      <a class="contact-card" href="mailto:ventas@proingen.cl">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val">ventas@proingen.cl</div>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/comercial_proingen" target="_blank">
+        <img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+        <div class="cc-label">Instagram</div>
+        <div class="cc-val">@comercial_proingen</div>
+      </a>
+      <a class="contact-card" href="https://www.facebook.com/profile.php?id=100064226073582" target="_blank">
+        <img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" style="border-radius:6px;" />
+        <div class="cc-label">Facebook</div>
+        <div class="cc-val">Comercial Proingen</div>
+      </a>
+      <a class="contact-card" href="#">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Ubicación</div>
+        <div class="cc-val">Santiago, Chile</div>
+      </a>
+    </div>
+    <a href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" class="whatsapp-btn" target="_blank">
+      <span>💬</span> Cotizar por WhatsApp
+    </a>
+  </section>
+
+  <footer>
+    <img src="https://i.imgur.com/iRurkDU.png" alt="Comercial Proingen" style="height:44px;width:44px;object-fit:contain;filter:invert(1);opacity:0.85;" />
+    <p>© 2025 Comercial Proingen Ltda. · Santiago, Chile</p>
+    <p style="color:var(--gray); font-size:0.75rem;">Fabricación en PVC · Soluciones a medida</p>
+  </footer>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) closeModal(this.id);
+      });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+  <!-- Botón WhatsApp flotante -->
+  <a class="wa-float" href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" target="_blank" aria-label="Cotizar por WhatsApp">
+    <span class="wa-tooltip">Cotizar por WhatsApp</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</body>
+</html>
