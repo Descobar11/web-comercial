@@ -176,6 +176,7 @@
 
     .modal-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
 
+    /* Image gallery inside modal */
     .modal-gallery { display: grid; gap: 0.8rem; margin-bottom: 2rem; }
     .modal-gallery.one-img { grid-template-columns: 1fr; }
     .modal-gallery.two-img { grid-template-columns: 1fr 1fr; }
@@ -211,219 +212,7 @@
     .stat-card .big { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); }
     .stat-card .label { font-size: 0.85rem; color: var(--gray); margin-top: 0.3rem; }
 
-    /* ===================== FORMULARIO COTIZACIÓN ===================== */
-    .cotizacion {
-      background: var(--navy);
-      position: relative;
-      overflow: hidden;
-    }
-    .cotizacion::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,180,216,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cotizacion::after {
-      content: '';
-      position: absolute;
-      bottom: -150px; left: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(26,74,138,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cotizacion-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cotizacion-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .cotizacion-header h2 { margin-bottom: 0.8rem; }
-    .cotizacion-header p { color: var(--gray); font-size: 0.95rem; line-height: 1.7; max-width: 500px; margin: 0 auto; }
-
-    .form-card {
-      background: var(--navy-mid);
-      border: 1px solid rgba(0,180,216,0.12);
-      border-radius: 28px;
-      padding: 3rem;
-      position: relative;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .form-group.full { grid-column: span 2; }
-
-    .form-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--accent2);
-    }
-
-    .form-input,
-    .form-select,
-    .form-textarea {
-      background: rgba(10,22,40,0.7);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.92rem;
-      padding: 0.85rem 1.1rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-      width: 100%;
-    }
-    .form-input::placeholder,
-    .form-textarea::placeholder { color: rgba(148,163,184,0.45); }
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      border-color: rgba(0,180,216,0.5);
-      box-shadow: 0 0 0 3px rgba(0,180,216,0.08);
-    }
-
-    .form-select {
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300b4d8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      cursor: pointer;
-    }
-    .form-select option { background: var(--navy-mid); color: var(--white); }
-
-    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
-
-    .form-nota {
-      font-size: 0.8rem;
-      color: var(--gray);
-      margin-top: 0.3rem;
-      line-height: 1.5;
-    }
-
-    /* Medidas dinámicas */
-    .medidas-box {
-      display: none;
-      background: rgba(0,180,216,0.04);
-      border: 1px solid rgba(0,180,216,0.1);
-      border-radius: 12px;
-      padding: 1.2rem;
-      margin-top: 0.5rem;
-    }
-    .medidas-box.show { display: block; }
-    .medidas-box p { font-size: 0.8rem; color: var(--accent2); margin-bottom: 0.8rem; line-height: 1.5; }
-    .medidas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-    .medidas-mini-label { font-size: 0.72rem; color: var(--gray); margin-bottom: 0.3rem; }
-
-    /* Urgencia */
-    .urgencia-opts {
-      display: flex;
-      gap: 0.7rem;
-      flex-wrap: wrap;
-    }
-    .urgencia-opt {
-      flex: 1;
-      min-width: 120px;
-      background: rgba(10,22,40,0.7);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 0.7rem 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--gray);
-    }
-    .urgencia-opt:hover { border-color: rgba(0,180,216,0.3); color: var(--white); }
-    .urgencia-opt.selected { border-color: var(--accent); background: rgba(0,180,216,0.1); color: var(--accent); }
-    .urgencia-opt .u-emoji { display: block; font-size: 1.2rem; margin-bottom: 0.2rem; }
-
-    /* Submit */
-    .form-submit-row {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-cotizar {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: #25d366;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      padding: 1rem 2.2rem;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .btn-cotizar:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
-    .btn-cotizar svg { width: 20px; height: 20px; fill: #fff; }
-
-    .btn-email-cotizar {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: transparent;
-      color: var(--gray);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px;
-      padding: 1rem 1.8rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .btn-email-cotizar:hover { border-color: rgba(0,180,216,0.4); color: var(--accent); }
-
-    .form-legal {
-      font-size: 0.75rem;
-      color: rgba(148,163,184,0.5);
-      margin-top: 1rem;
-      line-height: 1.5;
-    }
-
-    /* Éxito */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .form-success.show { display: block; }
-    .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-    .form-success h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.8rem; }
-    .form-success p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
-
-    /* ============================================================ */
-
-    .contacto { background: var(--navy-mid); text-align: center; }
+    .contacto { background: var(--navy); text-align: center; }
     .contacto h2 { margin-bottom: 1rem; }
     .contacto p { color: var(--gray); max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
     .contacto-cards { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
@@ -437,6 +226,7 @@
     }
     .contact-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-3px); }
 
+    /* Fixed Instagram icon container */
     .cc-icon { font-size: 2rem; margin-bottom: 0.8rem; line-height: 1; }
     .cc-icon-img {
       width: 2rem; height: 2rem;
@@ -477,17 +267,12 @@
       .modal-gallery.three-img .gallery-img:first-child { grid-column: span 1; }
       .modal-body { padding: 1.5rem; }
       .modal h3 { font-size: 1.3rem; }
-      .form-grid { grid-template-columns: 1fr; }
-      .form-group.full { grid-column: span 1; }
-      .form-card { padding: 1.8rem 1.4rem; }
-      .medidas-grid { grid-template-columns: 1fr; }
-      .form-submit-row { flex-direction: column; align-items: stretch; }
-      .btn-cotizar, .btn-email-cotizar { justify-content: center; }
     }
 
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
     .fade-in.visible { opacity: 1; transform: none; }
 
+    /* WhatsApp flotante */
     .wa-float {
       position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 999;
       width: 58px; height: 58px;
@@ -511,7 +296,8 @@
     }
     .wa-float:hover .wa-tooltip { opacity: 1; }
 
-    .faq { background: var(--navy); }
+    /* FAQ */
+    .faq { background: var(--navy-mid); }
     .faq-header { text-align: center; margin-bottom: 3rem; }
     .faq-header h2 { margin-bottom: 0.6rem; }
     .faq-header p { color: var(--gray); font-size: 0.95rem; }
@@ -557,7 +343,7 @@
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><a href="#cotizar" class="nav-cta">Cotizar →</a></li>
+      <li><a href="#contacto" class="nav-cta">Cotizar →</a></li>
     </ul>
   </nav>
 
@@ -568,7 +354,7 @@
       <h1>Cobertores y<br>soluciones en<br><em>PVC a medida</em></h1>
       <p class="hero-sub">Fabricamos cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más — adaptados exactamente a las necesidades de cada cliente.</p>
       <div class="hero-actions">
-        <a href="#cotizar" class="btn-primary">Cotizar ahora →</a>
+        <a href="#contacto" class="btn-primary">Cotizar ahora →</a>
         <a href="#productos" class="btn-secondary">Ver productos</a>
       </div>
       <div class="hero-stats">
@@ -577,22 +363,8 @@
         <div><div class="stat-num">Chile</div><div class="stat-label">Cobertura nacional</div></div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;position:relative;z-index:2;">
-        <img src="https://i.imgur.com/iRurkDU.png" alt="Comercial Proingen" style="width:280px;height:280px;object-fit:contain;filter:invert(1) drop-shadow(0 0 40px rgba(0,180,216,0.25));opacity:0.92;" />
-      </div>
-      <div class="hero-card-stack" style="position:absolute;bottom:-2rem;right:0;opacity:0.5;pointer-events:none;transform:scale(0.75);transform-origin:bottom right;">
-        <div class="hcard hcard-main">
-          <div class="pool-icon">🏊</div>
-          <h3>Cobertor de Seguridad</h3>
-          <p>Fabricado en PVC de alta resistencia</p>
-        </div>
-        <div class="hcard hcard-float">
-          <div class="f-label">Calidad</div>
-          <div class="f-val">PVC Pro</div>
-        </div>
-        <div class="hcard hcard-badge">✓ A medida<br>tu proyecto</div>
-      </div>
+    <div class="hero-visual" style="display:flex;justify-content:center;align-items:center;">
+      <img src="https://i.imgur.com/iRurkDU.png" alt="Comercial Proingen" style="width:280px;height:280px;object-fit:contain;filter:invert(1) drop-shadow(0 0 40px rgba(0,180,216,0.35));border-radius:50%;position:relative;z-index:2;" />
     </div>
   </section>
 
@@ -602,7 +374,7 @@
         <div class="section-label">Lo que fabricamos</div>
         <h2>Nuestros productos</h2>
       </div>
-      <a href="#cotizar" class="btn-secondary">Solicitar cotización →</a>
+      <a href="#contacto" class="btn-secondary">Solicitar cotización →</a>
     </div>
     <div class="productos-grid">
       <div class="prod-card fade-in" onclick="openModal('modal-cobertores')">
@@ -630,7 +402,7 @@
         <span class="ver-mas">Ver más →</span>
       </div>
       <div class="prod-card fade-in" onclick="openModal('modal-techos')">
-        <img src="https://i.imgur.com/vJ6435X.jpeg" alt="Techo para faena" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
+        <img src="https://i.imgur.com/vJ6435Q.jpeg" alt="Techo para faena" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1.2rem;" />
         <h3>Techos para faena</h3>
         <p>Cubiertas para obras y faenas industriales, resistentes y adaptables.</p>
         <span class="ver-mas">Ver más →</span>
@@ -644,7 +416,7 @@
     </div>
   </section>
 
-  <!-- MODALES (sin cambios) -->
+  <!-- MODAL COBERTORES -->
   <div class="modal-overlay" id="modal-cobertores">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-cobertores')">✕</button>
@@ -654,14 +426,33 @@
         <h3>Cobertores de seguridad para piscinas</h3>
         <p class="modal-desc">Nuestros cobertores ofrecen protección completa para piscinas de cualquier forma y tamaño. Fabricados en malla de poliéster recubierta en PVC, son resistentes al sol, la lluvia y el viento. Evitan accidentes, reducen la evaporación del agua y mantienen la piscina limpia durante todo el año.</p>
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ventajas</h4><ul><li>Protege de caídas accidentales de personas y mascotas</li><li>Mantiene la piscina limpia de hojas y suciedad</li><li>Evita la pérdida de temperatura del agua</li><li>Reduce costos de mantención y productos químicos</li><li>Evita la evaporación del agua</li></ul></div>
-          <div class="modal-col-box"><h4>Características</h4><ul><li>Malla de poliéster recubierta en PVC</li><li>Protección UV</li><li>Soporta más de 100 kg</li><li>Anclajes a ras de piso y perillas removibles</li><li>Fabricación a medida según cada piscina</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege de caídas accidentales de personas y mascotas</li>
+              <li>Mantiene la piscina limpia de hojas y suciedad</li>
+              <li>Evita la pérdida de temperatura del agua</li>
+              <li>Reduce costos de mantención y productos químicos</li>
+              <li>Evita la evaporación del agua</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Malla de poliéster recubierta en PVC</li>
+              <li>Protección UV</li>
+              <li>Soporta más de 100 kg</li>
+              <li>Anclajes a ras de piso y perillas removibles</li>
+              <li>Fabricación a medida según cada piscina</li>
+            </ul>
+          </div>
         </div>
         <div class="modal-nota">📐 Para cotizar, indícanos las medidas internas (agua) y forma de tu piscina. Contáctanos por WhatsApp o email y te enviamos una cotización formal sin costo.</div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL TÉRMICOS -->
   <div class="modal-overlay" id="modal-termicos">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-termicos')">✕</button>
@@ -669,25 +460,70 @@
       <div class="modal-body">
         <div class="modal-label">Producto</div>
         <h3>Separadores térmicos para camión</h3>
-        <p class="modal-desc">Cortinas interiores diseñadas para dividir la carga en camiones de reparto multitemperatura.</p>
+        <p class="modal-desc">Cortinas interiores diseñadas para dividir la carga en camiones de reparto multitemperatura. Permiten transportar productos que requieren distintas condiciones en un mismo vehículo, optimizando costos y tiempos de distribución.</p>
+
+        <!-- Ficha técnica ST-PRO -->
         <div class="modal-col-box" style="margin-bottom:1.5rem;">
-          <h4 style="display:flex;align-items:center;gap:0.6rem;"><span style="background:var(--accent);color:var(--navy);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:50px;letter-spacing:1px;">MODELO</span>ST-PRO</h4>
+          <h4 style="display:flex;align-items:center;gap:0.6rem;">
+            <span style="background:var(--accent);color:var(--navy);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:50px;letter-spacing:1px;">MODELO</span>
+            ST-PRO
+          </h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem;margin-top:0.8rem;">
-            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Construcción panel</span>EPS protegido y recubierto PVC 18 oz</div>
-            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Paneles</span>2</div>
-            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Manillas</span>8 (4 por cada panel)</div>
-            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Bisagra central</span>PVC</div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Construcción panel</span>
+              EPS protegido y recubierto PVC 18 oz
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Paneles</span>
+              2
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Manillas</span>
+              8 (4 por cada panel)
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Bisagra central</span>
+              PVC
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Protector inferior</span>
+              PVC alta resistencia
+            </div>
+            <div style="font-size:0.82rem;color:var(--gray);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <span style="color:var(--accent2);font-weight:600;display:block;font-size:0.7rem;letter-spacing:0.5px;margin-bottom:0.15rem;">Contorno</span>
+              Espuma PU ajustable para mayor sello
+            </div>
           </div>
         </div>
+
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ventajas</h4><ul><li>Transporta productos a distintas temperaturas</li><li>Reduce costos operativos de distribución</li><li>Fácil instalación y remoción</li><li>Adaptable a cualquier modelo de camión</li></ul></div>
-          <div class="modal-col-box"><h4>Características</h4><ul><li>Lona PVC de alta resistencia térmica</li><li>Sistema de fijación con velcro o correas</li><li>Fabricación a medida del compartimento</li><li>Lavable y de fácil mantención</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Transporta productos a distintas temperaturas</li>
+              <li>Reduce costos operativos de distribución</li>
+              <li>Fácil instalación y remoción</li>
+              <li>Adaptable a cualquier modelo de camión</li>
+              <li>Aumenta la vida útil de los productos transportados</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Lona PVC de alta resistencia térmica</li>
+              <li>Sistema de fijación con velcro o correas</li>
+              <li>Fabricación a medida del compartimento</li>
+              <li>Disponible en distintos espesores</li>
+              <li>Lavable y de fácil mantención</li>
+            </ul>
+          </div>
         </div>
         <div class="modal-nota">🚚 Fabricamos según las medidas internas de tu camión. Contáctanos con las dimensiones del compartimento y te cotizamos sin compromiso.</div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL ASCENSOR -->
   <div class="modal-overlay" id="modal-ascensor">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-ascensor')">✕</button>
@@ -695,18 +531,43 @@
       <div class="modal-body">
         <div class="modal-label">Producto</div>
         <h3>Protectores para cabina de ascensor</h3>
-        <p class="modal-desc">En cada mudanza, entrega o traslado de materiales, el ascensor de tu edificio enfrenta riesgos invisibles pero costosos. En Proingen diseñamos protectores resistentes, fáciles de instalar y de transportar.</p>
-        <p class="modal-desc" style="font-style:italic; color: var(--accent2);">No se trata solo de un protector. Se trata de mostrar gestión, previsión y cuidado por cada detalle.</p>
-        <div class="modal-gallery one-img"><img class="gallery-img" src="https://i.imgur.com/rbHu5hq.jpeg" alt="Protector ascensor instalado" /></div>
+        <p class="modal-desc">En cada mudanza, entrega o traslado de materiales, el ascensor de tu edificio enfrenta riesgos invisibles pero costosos: rayas, golpes y daños que afectan su imagen, su valor… y tu tranquilidad como administrador.</p>
+        <p class="modal-desc" style="margin-top:-1rem;">En Proingen entendemos lo que significa mantener un edificio en perfecto estado: la presión de los residentes, el cuidado del patrimonio común y la necesidad de soluciones prácticas y efectivas. Por eso diseñamos protectores resistentes, fáciles de instalar y de transportar, que no solo protegen el acero y los espejos del ascensor, sino que protegen también tu reputación y el bienestar de quienes viven o trabajan en el edificio.</p>
+        <p class="modal-desc" style="margin-top:-1rem; font-style:italic; color: var(--accent2);">No se trata solo de un protector. Se trata de mostrar gestión, previsión y cuidado por cada detalle.</p>
+
+        <!-- Galería de imágenes adicionales -->
+        <div class="modal-gallery one-img">
+          <img class="gallery-img" src="https://i.imgur.com/rbHu5hq.jpeg" alt="Protector ascensor instalado" />
+        </div>
+
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ventajas</h4><ul><li>Protege paredes, espejos y puertas del ascensor</li><li>Evita costosas reparaciones post-obra</li><li>Fácil instalación sin herramientas</li><li>Reutilizable en múltiples proyectos</li></ul></div>
-          <div class="modal-col-box"><h4>Características</h4><ul><li>Tela técnica acolchada de alta resistencia</li><li>Sistema de fijación con imanes o velcro</li><li>Fabricación a medida de cada cabina</li><li>Resistente a impactos y abrasión</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege paredes, espejos y puertas del ascensor</li>
+              <li>Evita costosas reparaciones post-obra</li>
+              <li>Fácil instalación sin herramientas</li>
+              <li>Reutilizable en múltiples proyectos</li>
+              <li>Ideal para administradores, constructoras y empresas de mudanza</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Tela técnica acolchada de alta resistencia</li>
+              <li>Sistema de fijación con imanes o velcro</li>
+              <li>Fabricación a medida de cada cabina</li>
+              <li>Disponible en distintos colores</li>
+              <li>Resistente a impactos y abrasión</li>
+            </ul>
+          </div>
         </div>
         <div class="modal-nota">🏗️ Indícanos las medidas de tu cabina y el tipo de superficie a proteger. Te enviamos una cotización en menos de 24 horas.</div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL CORTINAS -->
   <div class="modal-overlay" id="modal-cortinas">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-cortinas')">✕</button>
@@ -714,33 +575,71 @@
       <div class="modal-body">
         <div class="modal-label">Producto</div>
         <h3>Cortinas separadoras</h3>
-        <p class="modal-desc">Solución eficiente para dividir espacios en bodegas, talleres, plantas industriales y oficinas.</p>
+        <p class="modal-desc">Solución eficiente para dividir espacios en bodegas, talleres, plantas industriales y oficinas. Nuestras cortinas en PVC transparente o lona permiten separar áreas de trabajo manteniendo visibilidad y tránsito fluido entre zonas.</p>
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ventajas</h4><ul><li>Divide espacios sin obra ni construcción</li><li>Mantiene visibilidad entre zonas</li><li>Permite paso fácil de personas y maquinaria</li><li>Instalación rápida sin daños al inmueble</li></ul></div>
-          <div class="modal-col-box"><h4>Características</h4><ul><li>PVC transparente o lona según necesidad</li><li>Sistema de riel deslizante o fijo</li><li>Fabricación a medida del espacio</li><li>Fácil limpieza y mantención</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Divide espacios sin obra ni construcción</li>
+              <li>Mantiene visibilidad entre zonas</li>
+              <li>Permite paso fácil de personas y maquinaria</li>
+              <li>Reduce ruido y polvo entre áreas</li>
+              <li>Instalación rápida sin daños al inmueble</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>PVC transparente o lona según necesidad</li>
+              <li>Sistema de riel deslizante o fijo</li>
+              <li>Fabricación a medida del espacio</li>
+              <li>Resistente a temperaturas extremas</li>
+              <li>Fácil limpieza y mantención</li>
+            </ul>
+          </div>
         </div>
-        <div class="modal-nota">🏭 Cuéntanos las dimensiones del espacio a dividir y el tipo de uso. Te asesoramos en la mejor solución.</div>
+        <div class="modal-nota">🏭 Cuéntanos las dimensiones del espacio a dividir y el tipo de uso. Te asesoramos en la mejor solución para tu proyecto.</div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL TECHOS -->
   <div class="modal-overlay" id="modal-techos">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-techos')">✕</button>
-      <img class="modal-img" src="https://i.imgur.com/vJ6435X.jpeg" alt="Techos para faena" />
+      <img class="modal-img" src="https://i.imgur.com/vJ6435Q.jpeg" alt="Techos para faena" />
       <div class="modal-body">
         <div class="modal-label">Producto</div>
         <h3>Techos para faena</h3>
-        <p class="modal-desc">Cubiertas en lona PVC de alto gramaje para proteger obras, faenas industriales y áreas de trabajo a la intemperie.</p>
+        <p class="modal-desc">Cubiertas en lona PVC de alto gramaje para proteger obras, faenas industriales y áreas de trabajo a la intemperie. Resistentes a la lluvia, el viento y el sol, son la solución ideal para mantener las condiciones de trabajo en cualquier clima.</p>
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ventajas</h4><ul><li>Protege materiales y equipos de la lluvia y el sol</li><li>Permite continuar trabajos en días de mal tiempo</li><li>Fácil montaje sobre estructuras existentes</li><li>Reutilizable en distintas obras</li></ul></div>
-          <div class="modal-col-box"><h4>Características</h4><ul><li>Lona PVC de alto gramaje (600–900 g/m²)</li><li>Tratamiento UV y anti-hongos</li><li>Ojales reforzados para sujeción</li><li>Disponible en distintos colores</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ventajas</h4>
+            <ul>
+              <li>Protege materiales y equipos de la lluvia y el sol</li>
+              <li>Permite continuar trabajos en días de mal tiempo</li>
+              <li>Fácil montaje sobre estructuras existentes</li>
+              <li>Resistente a vientos fuertes</li>
+              <li>Reutilizable en distintas obras</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Características</h4>
+            <ul>
+              <li>Lona PVC de alto gramaje (600–900 g/m²)</li>
+              <li>Tratamiento UV y anti-hongos</li>
+              <li>Ojales reforzados para sujeción</li>
+              <li>Fabricación a medida del área</li>
+              <li>Disponible en distintos colores</li>
+            </ul>
+          </div>
         </div>
-        <div class="modal-nota">⛺ Indícanos las dimensiones y el tipo de estructura donde se instalará. Fabricamos según tus requerimientos.</div>
+        <div class="modal-nota">⛺ Indícanos las dimensiones y el tipo de estructura donde se instalará. Fabricamos según tus requerimientos específicos.</div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL ESPECIALES -->
   <div class="modal-overlay" id="modal-especiales">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-especiales')">✕</button>
@@ -748,12 +647,30 @@
       <div class="modal-body">
         <div class="modal-label">Producto</div>
         <h3>Proyectos especiales</h3>
-        <p class="modal-desc">En Proingen fabricamos cualquier solución en tela PVC, lona técnica o materiales especializados.</p>
+        <p class="modal-desc">En Proingen fabricamos cualquier solución en tela PVC, lona técnica o materiales especializados. Si tienes un requerimiento que no encaja en nuestros productos estándar, cuéntanos tu idea y desarrollamos una solución a medida para tu empresa o proyecto.</p>
         <div class="modal-cols">
-          <div class="modal-col-box"><h4>Ejemplos de proyectos</h4><ul><li>Carpas industriales de grandes dimensiones</li><li>Fundas protectoras para maquinaria</li><li>Coberturas para piscinas de formas irregulares</li><li>Soluciones para agricultura y minería</li></ul></div>
-          <div class="modal-col-box"><h4>Nuestro proceso</h4><ul><li>Asesoría técnica sin costo</li><li>Diseño y presupuesto personalizados</li><li>Fabricación en taller propio en Santiago</li><li>Despacho a todo Chile</li></ul></div>
+          <div class="modal-col-box">
+            <h4>Ejemplos de proyectos</h4>
+            <ul>
+              <li>Carpas industriales de grandes dimensiones</li>
+              <li>Fundas protectoras para maquinaria</li>
+              <li>Coberturas para piscinas de formas irregulares</li>
+              <li>Soluciones para agricultura y minería</li>
+              <li>Cualquier solución en PVC a pedido</li>
+            </ul>
+          </div>
+          <div class="modal-col-box">
+            <h4>Nuestro proceso</h4>
+            <ul>
+              <li>Asesoría técnica sin costo</li>
+              <li>Diseño y presupuesto personalizados</li>
+              <li>Fabricación en taller propio en Santiago</li>
+              <li>Control de calidad en cada etapa</li>
+              <li>Despacho a todo Chile</li>
+            </ul>
+          </div>
         </div>
-        <div class="modal-nota">⚙️ ¿Tienes un proyecto fuera de lo común? Cuéntanos qué necesitas y lo desarrollamos.</div>
+        <div class="modal-nota">⚙️ ¿Tienes un proyecto fuera de lo común? Cuéntanos qué necesitas y lo desarrollamos. Hemos fabricado soluciones para industrias, minería, agricultura y más.</div>
       </div>
     </div>
   </div>
@@ -765,10 +682,22 @@
         <h2>Fabricación directa,<br>sin intermediarios</h2>
         <p>En Proingen fabricamos nosotros mismos cada producto, lo que nos permite adaptarnos a cada cliente — sin importar el tamaño del proyecto.</p>
         <div class="porque-items">
-          <div class="porque-item"><div class="pi-icon">📐</div><div class="pi-text"><h4>100% a medida</h4><p>Cada producto se fabrica según las dimensiones y requerimientos exactos del cliente.</p></div></div>
-          <div class="porque-item"><div class="pi-icon">🏭</div><div class="pi-text"><h4>Fabricación propia en Santiago</h4><p>Taller propio con materiales de calidad. Control total del proceso productivo.</p></div></div>
-          <div class="porque-item"><div class="pi-icon">🤝</div><div class="pi-text"><h4>Todos los clientes importan</h4><p>Atendemos con la misma dedicación a particulares, pymes y grandes industrias.</p></div></div>
-          <div class="porque-item"><div class="pi-icon">🚚</div><div class="pi-text"><h4>Envíos a todo Chile</h4><p>Despachamos a regiones. También contamos con retiro en Santiago.</p></div></div>
+          <div class="porque-item">
+            <div class="pi-icon">📐</div>
+            <div class="pi-text"><h4>100% a medida</h4><p>Cada producto se fabrica según las dimensiones y requerimientos exactos del cliente.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🏭</div>
+            <div class="pi-text"><h4>Fabricación propia en Santiago</h4><p>Taller propio con materiales de calidad. Control total del proceso productivo.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🤝</div>
+            <div class="pi-text"><h4>Todos los clientes importan</h4><p>Atendemos con la misma dedicación a particulares, pymes y grandes industrias.</p></div>
+          </div>
+          <div class="porque-item">
+            <div class="pi-icon">🚚</div>
+            <div class="pi-text"><h4>Envíos a todo Chile</h4><p>Despachamos a regiones. También contamos con retiro en Santiago.</p></div>
+          </div>
         </div>
       </div>
       <div class="porque-right fade-in">
@@ -779,179 +708,71 @@
     </div>
   </section>
 
-  <!-- ===================== FORMULARIO COTIZACIÓN ===================== -->
-  <section class="cotizacion" id="cotizar">
-    <div class="cotizacion-inner">
-      <div class="cotizacion-header fade-in">
-        <div class="section-label">Cotización express</div>
-        <h2>¿Qué necesitas fabricar?</h2>
-        <p>Completa el formulario y te enviamos una cotización formal sin costo en menos de 24 horas.</p>
-      </div>
-
-      <div class="form-card fade-in">
-        <!-- Formulario visible -->
-        <div id="form-content">
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Nombre *</label>
-              <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre completo" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Teléfono *</label>
-              <input class="form-input" type="tel" id="f-telefono" placeholder="+56 9 1234 5678" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input class="form-input" type="email" id="f-email" placeholder="tu@email.com" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Producto de interés *</label>
-              <select class="form-select" id="f-producto" onchange="mostrarMedidas()">
-                <option value="">— Selecciona un producto —</option>
-                <option value="Cobertor de piscina">Cobertor de piscina</option>
-                <option value="Separador térmico para camión">Separador térmico para camión</option>
-                <option value="Protector de ascensor">Protector de ascensor</option>
-                <option value="Cortinas separadoras">Cortinas separadoras</option>
-                <option value="Techo para faena">Techo para faena</option>
-                <option value="Proyecto especial">Proyecto especial</option>
-              </select>
-            </div>
-
-            <!-- Medidas dinámicas según producto -->
-            <div class="form-group full">
-              <div class="medidas-box" id="medidas-piscina">
-                <p>📐 Para cotizar el cobertor necesitamos las medidas internas del agua:</p>
-                <div class="medidas-grid">
-                  <div>
-                    <div class="medidas-mini-label">Largo (metros)</div>
-                    <input class="form-input" type="text" id="f-largo" placeholder="Ej: 8.5" />
-                  </div>
-                  <div>
-                    <div class="medidas-mini-label">Ancho (metros)</div>
-                    <input class="form-input" type="text" id="f-ancho" placeholder="Ej: 4.0" />
-                  </div>
-                </div>
-                <div style="margin-top:0.8rem;">
-                  <div class="medidas-mini-label">Forma de la piscina</div>
-                  <select class="form-select" id="f-forma" style="margin-top:0.3rem;">
-                    <option value="">— Seleccionar —</option>
-                    <option>Rectangular</option>
-                    <option>Ovalada</option>
-                    <option>Irregular / Personalizada</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="medidas-box" id="medidas-ascensor">
-                <p>📐 Para cotizar el protector necesitamos las medidas internas de la cabina:</p>
-                <div class="medidas-grid">
-                  <div>
-                    <div class="medidas-mini-label">Ancho (cm)</div>
-                    <input class="form-input" type="text" id="f-asc-ancho" placeholder="Ej: 110" />
-                  </div>
-                  <div>
-                    <div class="medidas-mini-label">Fondo (cm)</div>
-                    <input class="form-input" type="text" id="f-asc-fondo" placeholder="Ej: 140" />
-                  </div>
-                  <div>
-                    <div class="medidas-mini-label">Alto (cm)</div>
-                    <input class="form-input" type="text" id="f-asc-alto" placeholder="Ej: 220" />
-                  </div>
-                  <div>
-                    <div class="medidas-mini-label">N° de paredes a proteger</div>
-                    <select class="form-select" id="f-asc-paredes">
-                      <option value="">—</option>
-                      <option>2 paredes</option>
-                      <option>3 paredes</option>
-                      <option>4 paredes (completo)</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="medidas-box" id="medidas-camion">
-                <p>🚚 Para el separador térmico necesitamos las medidas del compartimento del camión:</p>
-                <div class="medidas-grid">
-                  <div>
-                    <div class="medidas-mini-label">Ancho interior (cm)</div>
-                    <input class="form-input" type="text" id="f-cam-ancho" placeholder="Ej: 220" />
-                  </div>
-                  <div>
-                    <div class="medidas-mini-label">Alto interior (cm)</div>
-                    <input class="form-input" type="text" id="f-cam-alto" placeholder="Ej: 190" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group full">
-              <label class="form-label">Descripción del proyecto</label>
-              <textarea class="form-textarea" id="f-descripcion" placeholder="Cuéntanos más detalles: materiales preferidos, cantidad de unidades, uso específico, plazos, o cualquier detalle relevante para tu cotización..."></textarea>
-            </div>
-
-            <div class="form-group full">
-              <label class="form-label">¿Con qué urgencia necesitas el producto?</label>
-              <div class="urgencia-opts">
-                <div class="urgencia-opt" onclick="selUrgencia(this, 'Sin urgencia — tomémonos el tiempo necesario')">
-                  <span class="u-emoji">🗓️</span>Sin apuro
-                </div>
-                <div class="urgencia-opt" onclick="selUrgencia(this, 'En las próximas 2-4 semanas')">
-                  <span class="u-emoji">📅</span>2–4 semanas
-                </div>
-                <div class="urgencia-opt" onclick="selUrgencia(this, 'Urgente — lo antes posible')">
-                  <span class="u-emoji">⚡</span>Urgente
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group full">
-              <label class="form-label">¿Cómo prefieres que te contactemos?</label>
-              <select class="form-select" id="f-contacto-pref">
-                <option value="WhatsApp">WhatsApp (más rápido)</option>
-                <option value="Email">Email</option>
-                <option value="Llamada telefónica">Llamada telefónica</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-submit-row">
-            <button class="btn-cotizar" onclick="enviarCotizacion('whatsapp')">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Enviar cotización por WhatsApp
-            </button>
-            <button class="btn-email-cotizar" onclick="enviarCotizacion('email')">
-              ✉️ Enviar por email
-            </button>
-          </div>
-          <p class="form-legal">* Campos obligatorios. Tu información es confidencial y solo se usa para enviarte la cotización.</p>
-        </div>
-
-        <!-- Estado de éxito -->
-        <div class="form-success" id="form-success">
-          <div class="success-icon">🎉</div>
-          <h3>¡Cotización enviada!</h3>
-          <p>Te redirigimos a WhatsApp para completar el envío.<br>Si no abrió automáticamente, <a href="#" id="wa-link-fallback" style="color:var(--accent);">haz clic aquí</a>.</p>
-          <button onclick="resetForm()" style="margin-top:2rem;background:none;border:1px solid rgba(0,180,216,0.3);color:var(--accent);padding:0.7rem 1.5rem;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;">Nueva cotización</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ============================================================ -->
-
+  <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="faq-header fade-in">
-      <div class="section-label">Dudas frecuentes</div>
+      <div class="section-label"></div>
       <h2>Preguntas frecuentes</h2>
       <p>Todo lo que necesitas saber antes de cotizar</p>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora la fabricación?<span class="faq-arrow">▾</span></button><div class="faq-a">El plazo depende del tipo y tamaño del producto. En general, los cobertores de piscina y protectores de ascensor están listos en 5 a 10 días hábiles desde que se confirma la cotización.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cómo tomo las medidas de mi piscina o ascensor?<span class="faq-arrow">▾</span></button><div class="faq-a">Para piscinas, necesitamos las medidas internas del agua (largo y ancho) y la forma. Para cabinas de ascensor, el ancho, fondo y alto de cada pared interior. Si tienes dudas, contáctanos por WhatsApp.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Hacen despacho a regiones?<span class="faq-arrow">▾</span></button><div class="faq-a">Sí. Despachamos a todo Chile a través de empresas de transporte. También puedes retirar en Santiago sin costo adicional.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿La cotización tiene algún costo?<span class="faq-arrow">▾</span></button><div class="faq-a">No. La cotización es completamente gratuita y sin compromiso. Respondemos dentro de 24 horas hábiles con un presupuesto formal.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Puedo pedir algo que no está en el catálogo?<span class="faq-arrow">▾</span></button><div class="faq-a">Sí, fabricamos proyectos especiales a medida. Si tienes un requerimiento específico en PVC, lona técnica u otros materiales, cuéntanos tu idea y lo evaluamos.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Qué formas de pago aceptan?<span class="faq-arrow">▾</span></button><div class="faq-a">Aceptamos transferencia bancaria. Para pedidos de empresas o proyectos grandes, coordinamos las condiciones de pago directamente.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Dónde están ubicados?<span class="faq-arrow">▾</span></button><div class="faq-a">Fabricamos en Santiago. Nuestras ventas y coordinación se realizan de forma remota — por WhatsApp, email o redes sociales — lo que nos permite atender clientes en todo Chile.</div></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto demora la fabricación?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">El plazo depende del tipo y tamaño del producto. En general, los cobertores de piscina y protectores de ascensor están listos en 5 a 10 días hábiles desde que se confirma la cotización. Para proyectos de mayor volumen o complejidad, coordinamos los plazos directamente con el cliente.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo tomo las medidas de mi piscina o ascensor?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Para piscinas, necesitamos las medidas internas del agua (largo y ancho) y la forma (rectangular, irregular, etc.). Para cabinas de ascensor, el ancho, fondo y alto de cada pared interior. Si tienes dudas, contáctanos por WhatsApp y te guiamos paso a paso sin costo.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Hacen despacho a regiones?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí. Despachamos a todo Chile a través de empresas de transporte. El costo y tiempo de envío depende de la región y el tamaño del pedido. También puedes retirar en Santiago sin costo adicional. Al cotizar, te informamos las opciones disponibles.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿La cotización tiene algún costo?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">No. La cotización es completamente gratuita y sin compromiso. Solo necesitamos las medidas y el tipo de producto que necesitas. Respondemos dentro de 24 horas hábiles con un presupuesto formal.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo pedir algo que no está en el catálogo?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí, fabricamos proyectos especiales a medida. Si tienes un requerimiento específico en PVC, lona técnica u otros materiales, cuéntanos tu idea y lo evaluamos. Hemos trabajado para la industria, minería, agricultura y construcción con soluciones completamente personalizadas.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué formas de pago aceptan?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Aceptamos transferencia bancaria. Para pedidos de empresas o proyectos grandes, coordinamos las condiciones de pago directamente. Contáctanos para más detalles según tu situación.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Dónde están ubicados?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Fabricamos en Santiago. Nuestras ventas y coordinación se realizan de forma remota — por WhatsApp, email o redes sociales — lo que nos permite atender clientes en todo Chile de manera ágil y sin intermediarios.</div>
+      </div>
+
     </div>
   </section>
 
@@ -960,10 +781,26 @@
     <h2>¿Tienes un proyecto en mente?</h2>
     <p>Cuéntanos qué necesitas y te enviamos una cotización sin costo. Respondemos dentro de 24 horas.</p>
     <div class="contacto-cards">
-      <a class="contact-card" href="mailto:ventas@proingen.cl"><div class="cc-icon">✉️</div><div class="cc-label">Email</div><div class="cc-val">ventas@proingen.cl</div></a>
-      <a class="contact-card" href="https://www.instagram.com/comercial_proingen" target="_blank"><img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" /><div class="cc-label">Instagram</div><div class="cc-val">@comercial_proingen</div></a>
-      <a class="contact-card" href="https://www.facebook.com/profile.php?id=100064226073582" target="_blank"><img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" style="border-radius:6px;" /><div class="cc-label">Facebook</div><div class="cc-val">Comercial Proingen</div></a>
-      <a class="contact-card" href="#"><div class="cc-icon">📍</div><div class="cc-label">Ubicación</div><div class="cc-val">Santiago, Chile</div></a>
+      <a class="contact-card" href="mailto:ventas@proingen.cl">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val">ventas@proingen.cl</div>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/comercial_proingen" target="_blank">
+        <img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+        <div class="cc-label">Instagram</div>
+        <div class="cc-val">@comercial_proingen</div>
+      </a>
+      <a class="contact-card" href="https://www.facebook.com/profile.php?id=100064226073582" target="_blank">
+        <img class="cc-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" style="border-radius:6px;" />
+        <div class="cc-label">Facebook</div>
+        <div class="cc-val">Comercial Proingen</div>
+      </a>
+      <a class="contact-card" href="#">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Ubicación</div>
+        <div class="cc-val">Santiago, Chile</div>
+      </a>
     </div>
     <a href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" class="whatsapp-btn" target="_blank">
       <span>💬</span> Cotizar por WhatsApp
@@ -977,122 +814,39 @@
   </footer>
 
   <script>
-    // --- Modales ---
-    function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) closeModal(this.id);
+      });
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
     });
-
-    // --- Fade in ---
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+      });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // --- FAQ ---
+    // FAQ accordion
     function toggleFaq(btn) {
       const item = btn.parentElement;
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     }
-
-    // --- Formulario ---
-    let urgenciaSeleccionada = '';
-
-    function selUrgencia(el, val) {
-      document.querySelectorAll('.urgencia-opt').forEach(o => o.classList.remove('selected'));
-      el.classList.add('selected');
-      urgenciaSeleccionada = val;
-    }
-
-    function mostrarMedidas() {
-      const prod = document.getElementById('f-producto').value;
-      document.querySelectorAll('.medidas-box').forEach(b => b.classList.remove('show'));
-      if (prod === 'Cobertor de piscina') document.getElementById('medidas-piscina').classList.add('show');
-      if (prod === 'Protector de ascensor') document.getElementById('medidas-ascensor').classList.add('show');
-      if (prod === 'Separador térmico para camión') document.getElementById('medidas-camion').classList.add('show');
-    }
-
-    function getMedidas() {
-      const prod = document.getElementById('f-producto').value;
-      let medidas = '';
-      if (prod === 'Cobertor de piscina') {
-        const largo = document.getElementById('f-largo').value;
-        const ancho = document.getElementById('f-ancho').value;
-        const forma = document.getElementById('f-forma').value;
-        if (largo || ancho || forma) medidas = `\nMedidas piscina: ${largo}m x ${ancho}m — Forma: ${forma || 'No especificada'}`;
-      }
-      if (prod === 'Protector de ascensor') {
-        const a = document.getElementById('f-asc-ancho').value;
-        const f = document.getElementById('f-asc-fondo').value;
-        const al = document.getElementById('f-asc-alto').value;
-        const p = document.getElementById('f-asc-paredes').value;
-        if (a || f || al) medidas = `\nCabina ascensor: ${a}cm ancho x ${f}cm fondo x ${al}cm alto — ${p || ''}`;
-      }
-      if (prod === 'Separador térmico para camión') {
-        const a = document.getElementById('f-cam-ancho').value;
-        const al = document.getElementById('f-cam-alto').value;
-        if (a || al) medidas = `\nMedidas camión: ${a}cm ancho x ${al}cm alto`;
-      }
-      return medidas;
-    }
-
-    function enviarCotizacion(canal) {
-      const nombre = document.getElementById('f-nombre').value.trim();
-      const telefono = document.getElementById('f-telefono').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const producto = document.getElementById('f-producto').value;
-      const descripcion = document.getElementById('f-descripcion').value.trim();
-      const contactoPref = document.getElementById('f-contacto-pref').value;
-
-      if (!nombre) { alert('Por favor ingresa tu nombre.'); return; }
-      if (!telefono) { alert('Por favor ingresa tu teléfono.'); return; }
-      if (!producto) { alert('Por favor selecciona un producto.'); return; }
-
-      const medidas = getMedidas();
-
-      if (canal === 'whatsapp') {
-        let msg = `Hola Proingen, me gustaría solicitar una cotización:
-
-👤 Nombre: ${nombre}
-📱 Teléfono: ${telefono}${email ? '\n📧 Email: ' + email : ''}
-📦 Producto: ${producto}${medidas}${descripcion ? '\n📝 Descripción: ' + descripcion : ''}${urgenciaSeleccionada ? '\n⏱ Urgencia: ' + urgenciaSeleccionada : ''}
-📬 Prefiero contacto por: ${contactoPref}
-
-Quedo atento/a. ¡Gracias!`;
-
-        const url = 'https://wa.me/56951641254?text=' + encodeURIComponent(msg);
-        document.getElementById('wa-link-fallback').href = url;
-        window.open(url, '_blank');
-        document.getElementById('form-content').style.display = 'none';
-        document.getElementById('form-success').classList.add('show');
-
-      } else {
-        let subject = `Cotización: ${producto} — ${nombre}`;
-        let body = `Hola Proingen,\n\nMe gustaría solicitar una cotización:\n\nNombre: ${nombre}\nTeléfono: ${telefono}${email ? '\nEmail: ' + email : ''}\nProducto: ${producto}${medidas}${descripcion ? '\nDescripción: ' + descripcion : ''}${urgenciaSeleccionada ? '\nUrgencia: ' + urgenciaSeleccionada : ''}\nPreferencia de contacto: ${contactoPref}\n\nQuedo atento/a. ¡Gracias!`;
-        window.location.href = `mailto:ventas@proingen.cl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-    }
-
-    function resetForm() {
-      document.getElementById('form-content').style.display = '';
-      document.getElementById('form-success').classList.remove('show');
-      document.getElementById('f-nombre').value = '';
-      document.getElementById('f-telefono').value = '';
-      document.getElementById('f-email').value = '';
-      document.getElementById('f-producto').value = '';
-      document.getElementById('f-descripcion').value = '';
-      document.querySelectorAll('.medidas-box').forEach(b => b.classList.remove('show'));
-      document.querySelectorAll('.urgencia-opt').forEach(o => o.classList.remove('selected'));
-      urgenciaSeleccionada = '';
-    }
   </script>
 
+  <!-- Botón WhatsApp flotante -->
   <a class="wa-float" href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" target="_blank" aria-label="Cotizar por WhatsApp">
     <span class="wa-tooltip">Cotizar por WhatsApp</span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
