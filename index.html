@@ -15,6 +15,29 @@
   <meta property="og:locale" content="es_CL" />
   <meta name="description" content="Fabricamos cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más. Cotización sin costo. Envíos a todo Chile." />
   <meta name="theme-color" content="#00b4d8" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Descobar11/web-comercial/main/logo.png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Descobar11/web-comercial/main/logo.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Comercial Proingen Ltda.",
+    "description": "Fabricación de cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más, en PVC a medida.",
+    "telephone": "+56951641254",
+    "taxID": "76.684.243-7",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pirque",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
+    },
+    "areaServed": { "@type": "Country", "name": "Chile" },
+    "sameAs": [
+      "https://www.instagram.com/comercial_proingen",
+      "https://www.facebook.com/profile.php?id=100064226073582"
+    ]
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -432,6 +455,37 @@
       content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08);
     }
     @media (max-width: 900px) { .cf-row { grid-template-columns: 1fr; } }
+
+    /* ── Cómo funciona ── */
+    .como { background: var(--navy-mid); }
+    .como-header { text-align: center; margin-bottom: 3.5rem; }
+    .como-header p { color: var(--gray); font-size: 0.95rem; margin-top: 0.4rem; }
+    .como-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; position: relative;
+    }
+    .como-steps::before {
+      content: ''; position: absolute;
+      top: 1.5rem; left: calc(12.5% + 0.5rem); right: calc(12.5% + 0.5rem);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,180,216,0.4) 20%, rgba(0,180,216,0.4) 80%, transparent);
+      pointer-events: none;
+    }
+    .step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .step-num {
+      width: 3rem; height: 3rem; border-radius: 50%;
+      background: var(--navy); border: 2px solid rgba(0,180,216,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800;
+      color: var(--accent); margin-bottom: 1.2rem; position: relative; z-index: 1;
+    }
+    .step-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .step h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+    @media (max-width: 900px) {
+      .como-steps { grid-template-columns: 1fr 1fr; gap: 2rem 1.2rem; }
+      .como-steps::before { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -443,6 +497,7 @@
     </a>
     <ul>
       <li><a href="#productos">Productos</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contacto">Contacto</a></li>
@@ -456,6 +511,7 @@
   <!-- Menú móvil -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#productos" onclick="closeMobileMenu()">Productos</a>
+    <a href="#como-funciona" onclick="closeMobileMenu()">Cómo funciona</a>
     <a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a>
     <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
     <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
@@ -788,6 +844,40 @@
       </div>
     </div>
   </div>
+
+  <section class="como" id="como-funciona">
+    <div class="como-header fade-in">
+      <div class="section-label">Proceso</div>
+      <h2>Cómo funciona</h2>
+      <p>Del primer mensaje a la entrega, sin complicaciones</p>
+    </div>
+    <div class="como-steps">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <div class="step-icon">💬</div>
+        <h4>Cotiza gratis</h4>
+        <p>Escríbenos por WhatsApp o usa el formulario. Incluye las medidas y el producto que necesitas.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">2</div>
+        <div class="step-icon">📋</div>
+        <h4>Recibe tu presupuesto</h4>
+        <p>En menos de 24 horas hábiles te enviamos una cotización formal, sin compromiso.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <div class="step-icon">✅</div>
+        <h4>Confirmas y pagas</h4>
+        <p>Apruebas el presupuesto y realizas el pago por transferencia para iniciar la fabricación.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">4</div>
+        <div class="step-icon">🚚</div>
+        <h4>Fabricamos y despachamos</h4>
+        <p>Fabricamos tu producto a medida y lo enviamos a todo Chile, o lo retiras en Santiago.</p>
+      </div>
+    </div>
+  </section>
 
   <section id="nosotros">
     <div class="porque">
