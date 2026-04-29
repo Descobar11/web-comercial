@@ -30,7 +30,7 @@
       --light: #e2e8f0;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -155,6 +155,7 @@
     .stat-label { font-size: 0.8rem; color: var(--gray); margin-top: 0.2rem; }
 
     .hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    .hero-visual img { width: 280px; height: 280px; }
     .hero-card-stack { position: relative; width: 380px; height: 420px; overflow: hidden; }
     .hcard { position: absolute; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
     .hcard-main { width: 320px; height: 360px; top: 30px; left: 30px; background: linear-gradient(135deg, #1a4a8a 0%, #0a1628 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
@@ -313,8 +314,13 @@
       .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; overflow-x: clip; }
       .hero-visual { display: none; }
       section { padding: 4rem 1.5rem; overflow-x: clip; }
-      h1 { font-size: clamp(2rem, 9vw, 2.8rem); letter-spacing: -1px; }
-      h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); letter-spacing: -0.5px; }
+      h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); letter-spacing: -0.5px; }
+      h1 br, h2 br { display: none; }
+      h2 { font-size: clamp(1.6rem, 6.5vw, 2rem); letter-spacing: -0.5px; }
+      .hero-badge { white-space: normal; text-align: center; justify-content: center; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .hero-visual { display: none !important; }
+      .stat-card .big { font-size: 2rem; }
       .productos-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .productos-grid { grid-template-columns: 1fr; }
       .porque { grid-template-columns: 1fr; gap: 3rem; }
@@ -472,7 +478,7 @@
         <div><div class="stat-num">Chile</div><div class="stat-label">Cobertura nacional</div></div>
       </div>
     </div>
-    <div class="hero-visual" style="display:flex;justify-content:center;align-items:center;">
+    <div class="hero-visual">
       <img src="https://raw.githubusercontent.com/Descobar11/web-comercial/main/logo.png" alt="Comercial Proingen" style="width:280px;height:280px;object-fit:contain;filter:invert(1) drop-shadow(0 0 40px rgba(0,180,216,0.35));border-radius:50%;position:relative;z-index:2;" />
     </div>
   </section>
