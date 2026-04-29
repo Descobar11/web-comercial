@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proingen — Soluciones en PVC para Piscinas e Industria</title>
+  <!-- Open Graph / WhatsApp preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Comercial Proingen" />
+  <meta property="og:title" content="Proingen — Cobertores y soluciones en PVC a medida" />
+  <meta property="og:description" content="Fabricamos cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más. Cotización sin costo. Envíos a todo Chile." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/Descobar11/web-comercial/main/cobertor.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CL" />
+  <meta name="description" content="Fabricamos cobertores de seguridad para piscinas, separadores térmicos, carpas industriales y más. Cotización sin costo. Envíos a todo Chile." />
+  <meta name="theme-color" content="#00b4d8" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -379,6 +390,40 @@
       padding: 0 1.5rem;
     }
     .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.3rem; }
+
+    /* Contact form */
+    .contact-form {
+      max-width: 600px; margin: 0 auto 2.5rem; text-align: left;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .cf-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .cf-field label { font-size: 0.78rem; color: var(--accent); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .cf-field input, .cf-field textarea {
+      background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 0.85rem 1rem;
+      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical;
+    }
+    .cf-field input:focus, .cf-field textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,180,216,0.1);
+    }
+    .cf-field input::placeholder, .cf-field textarea::placeholder { color: var(--gray); opacity: 1; }
+    .cf-submit {
+      background: var(--accent); color: var(--navy);
+      border: none; border-radius: 50px; padding: 0.95rem 2rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .cf-submit:hover { background: var(--accent2); transform: translateY(-2px); }
+    .cf-divider {
+      display: flex; align-items: center; gap: 1rem; color: var(--gray); font-size: 0.8rem;
+    }
+    .cf-divider::before, .cf-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08);
+    }
+    @media (max-width: 900px) { .cf-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -841,6 +886,32 @@
     <div class="section-label">Hablemos</div>
     <h2>¿Tienes un proyecto en mente?</h2>
     <p>Cuéntanos qué necesitas y te enviamos una cotización sin costo. Respondemos dentro de 24 horas.</p>
+    <form class="contact-form" onsubmit="enviarWhatsApp(event)">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name">Nombre</label>
+          <input type="text" id="cf-name" placeholder="Tu nombre" required />
+        </div>
+        <div class="cf-field">
+          <label for="cf-product">Producto de interés</label>
+          <input type="text" id="cf-product" placeholder="Ej: Cobertor piscina" required />
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="cf-msg">Mensaje / Medidas</label>
+        <textarea id="cf-msg" rows="4" placeholder="Cuéntanos qué necesitas. Si tienes las medidas, inclúyelas aquí." required></textarea>
+      </div>
+      <button type="submit" class="cf-submit" style="background:#25d366;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Enviar cotización por WhatsApp
+      </button>
+    </form>
+
+    <div class="cf-divider">o contáctanos directamente</div>
+    <br>
+
     <div class="contacto-cards">
       <a class="contact-card" href="mailto:ventas@proingen.cl">
         <div class="cc-icon">✉️</div>
@@ -853,7 +924,11 @@
         <div class="cc-val">+56 9 9320 7699</div>
       </a>
       <a class="contact-card" href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" target="_blank">
-        <div class="cc-icon">💬</div>
+        <div class="cc-icon" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="#25d366" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
         <div class="cc-label">WhatsApp</div>
         <div class="cc-val">+56 9 5164 1254</div>
       </a>
@@ -874,7 +949,10 @@
       </a>
     </div>
     <a href="https://wa.me/56951641254?text=Hola%20Proingen%2C%20quisiera%20cotizar%20un%20producto" class="whatsapp-btn" target="_blank">
-      <span>💬</span> Cotizar por WhatsApp
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Cotizar por WhatsApp
     </a>
   </section>
 
@@ -920,6 +998,19 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
+    }
+
+    // Contact form → WhatsApp
+    function enviarWhatsApp(e) {
+      e.preventDefault();
+      const nombre  = document.getElementById('cf-name').value.trim();
+      const producto = document.getElementById('cf-product').value.trim();
+      const mensaje  = document.getElementById('cf-msg').value.trim();
+      let text = `Hola Proingen, quisiera cotizar 👋\n\n`;
+      text += `*Nombre:* ${nombre}\n`;
+      text += `*Producto:* ${producto}\n`;
+      text += `\n*Detalle / Medidas:*\n${mensaje}`;
+      window.open(`https://wa.me/56951641254?text=${encodeURIComponent(text)}`, '_blank');
     }
 
     // Hamburger menu
