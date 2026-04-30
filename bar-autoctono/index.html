@@ -10,6 +10,8 @@
   <meta property="og:description" content="Coctelería, hamburguesas y buen ambiente en La Reina, Santiago. Más de 50 tragos en carta." />
   <meta property="og:locale" content="es_CL" />
   <meta name="theme-color" content="#c9943a" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍹</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍹</text></svg>" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -798,52 +800,28 @@
           </div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Alto del Carmen</span>
-            <span class="menu-item-price">$4.500 / $6.400</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Alto del Carmen</span><span class="menu-item-price">$4.500 / $6.400</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Alto del Carmen 40° Transparente</span>
-            <span class="menu-item-price">$5.000 / $6.900</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Alto del Carmen 40° Transparente</span><span class="menu-item-price">$5.000 / $6.900</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Mistral 35°</span>
-            <span class="menu-item-price">$4.500 / $6.400</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Mistral 35°</span><span class="menu-item-price">$4.500 / $6.400</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Republicano 40° Añejado</span>
-            <span class="menu-item-price">$5.500 / $7.500</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Republicano 40° Añejado</span><span class="menu-item-price">$5.500 / $7.500</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Barceló Añejo</span>
-            <span class="menu-item-price">$4.500 / $6.000</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Barceló Añejo</span><span class="menu-item-price">$4.500 / $6.000</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Havana Añejo Especial</span>
-            <span class="menu-item-price">$4.500 / $6.400</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Havana Añejo Especial</span><span class="menu-item-price">$4.500 / $6.400</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Stoli Vodka</span>
-            <span class="menu-item-price">$4.000 / $6.000</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Stoli Vodka</span><span class="menu-item-price">$4.000 / $6.000</span></div>
         </div>
         <div class="menu-item">
-          <div class="menu-item-header">
-            <span class="menu-item-name">Absolut Blue</span>
-            <span class="menu-item-price">$6.000 / $8.900</span>
-          </div>
+          <div class="menu-item-header"><span class="menu-item-name">Absolut Blue</span><span class="menu-item-price">$6.000 / $8.900</span></div>
         </div>
         <div class="menu-item">
           <div class="menu-item-header"><span class="menu-item-name">Tequilazo</span><span class="menu-item-price">$3.500</span></div>
@@ -1086,7 +1064,6 @@
 </a>
 
 <script>
-  // Hamburger
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
 
@@ -1104,7 +1081,6 @@
     });
   });
 
-  // Tabs con data-tab
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.dataset.tab;
@@ -1115,7 +1091,6 @@
     });
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
