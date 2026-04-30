@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bar Autóctono — La Reina</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Autóctono — Coctelería & Bar, La Reina Santiago</title>
+  <meta name="description" content="Bar Autóctono en La Reina, Santiago. Coctelería de autor, hamburguesas artesanales y ambiente de barrio. Martes a domingo desde las 19:00 hrs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bar Autóctono — Tragos con carácter, ambiente de barrio" />
+  <meta property="og:description" content="Coctelería, hamburguesas y buen ambiente en La Reina, Santiago. Más de 50 tragos en carta." />
+  <meta property="og:locale" content="es_CL" />
+  <meta name="theme-color" content="#c9943a" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    "name": "Bar Autóctono",
+    "description": "Bar y coctelería en La Reina, Santiago. Más de 50 tragos, hamburguesas artesanales y ambiente de barrio.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "La Reina",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "19:00",
+        "closes": "00:00"
+      }
+    ],
+    "sameAs": ["https://www.instagram.com/barautoctono"]
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --negro: #0e0b08;
@@ -23,13 +43,10 @@
       --dorado: #c9943a;
       --dorado-claro: #e8b96a;
       --cafe: #3d2a14;
-      --cafe-medio: #6b4423;
       --blanco: #fefaf4;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -38,1523 +55,1072 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1.2rem 3rem;
-      background: rgba(14, 11, 8, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(201, 148, 58, 0.2);
+      background: rgba(14,11,8,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,148,58,0.14);
     }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--dorado);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--dorado); letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
     .nav-links a {
-      text-decoration: none;
-      color: var(--crema);
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, color 0.2s;
+      text-decoration: none; color: var(--crema);
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      opacity: 0.6; transition: opacity 0.2s, color 0.2s;
     }
+    .nav-links a:hover { opacity: 1; color: var(--dorado-claro); }
 
-    .nav-links a:hover {
-      opacity: 1;
-      color: var(--dorado-claro);
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column;
+      justify-content: center; gap: 5px;
+      width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer; padding: 6px;
     }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--crema); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* HERO */
+    /* mobile overlay */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(14,11,8,0.97); backdrop-filter: blur(16px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--crema); text-decoration: none;
+      font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--dorado); }
+
+    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      padding: 6rem 2rem 4rem;
-      overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      position: relative; padding: 6rem 2rem 4rem; overflow: hidden;
     }
 
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(61, 42, 20, 0.5) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 20% 30%, rgba(201, 148, 58, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(201, 148, 58, 0.06) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(61,42,20,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 15% 25%, rgba(201,148,58,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 85% 75%, rgba(201,148,58,0.07) 0%, transparent 60%);
     }
 
     .hero-ornament {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(201, 148, 58, 0.07);
+      width: min(700px, 95vw); height: min(700px, 95vw);
+      border-radius: 50%; border: 1px solid rgba(201,148,58,0.07);
       pointer-events: none;
     }
-
     .hero-ornament::before {
-      content: '';
-      position: absolute;
-      inset: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(201, 148, 58, 0.05);
+      content: ''; position: absolute; inset: 40px;
+      border-radius: 50%; border: 1px solid rgba(201,148,58,0.04);
     }
+    .hero-ornament::after {
+      content: ''; position: absolute; inset: 80px;
+      border-radius: 50%; border: 1px solid rgba(201,148,58,0.025);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(201,148,58,0.1); border: 1px solid rgba(201,148,58,0.25);
+      border-radius: 50px; padding: 0.4rem 1.1rem;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 2rem; position: relative;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.4rem; animation: blink 2.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
     .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--dorado);
-      margin-bottom: 1.8rem;
-      opacity: 0.9;
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 1.6rem; opacity: 0.85;
+      position: relative; display: flex; align-items: center; gap: 1rem;
     }
-
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--dorado);
-      opacity: 0.5;
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 36px; height: 1px;
+      background: var(--dorado); opacity: 0.45;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(4rem, 10vw, 8rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--crema);
-      position: relative;
-      margin-bottom: 0.3rem;
+      font-size: clamp(4rem, 10vw, 8rem); font-weight: 900;
+      line-height: 0.9; letter-spacing: -0.02em;
+      color: var(--crema); position: relative; margin-bottom: 0.3rem;
     }
-
-    h1 em {
-      font-style: italic;
-      color: var(--dorado);
-    }
+    h1 em { font-style: italic; color: var(--dorado); }
 
     .hero-subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      color: rgba(245, 237, 224, 0.55);
-      margin-top: 1.5rem;
-      letter-spacing: 0.02em;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: rgba(245,237,224,0.5); margin-top: 1.5rem;
     }
 
     .hero-location {
-      margin-top: 3rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(245, 237, 224, 0.4);
-      position: relative;
+      margin-top: 2.5rem; font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(245,237,224,0.3);
     }
 
     .hero-cta {
-      margin-top: 3.5rem;
-      display: flex;
-      gap: 1rem;
-      position: relative;
+      margin-top: 3rem; display: flex; gap: 1rem;
+      flex-wrap: wrap; justify-content: center; position: relative;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
+      display: inline-block; padding: 0.85rem 2.2rem;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500; transition: all 0.25s;
+      cursor: pointer; border: none;
     }
-
-    .btn-primary {
-      background: var(--dorado);
-      color: var(--negro);
-    }
-
-    .btn-primary:hover {
-      background: var(--dorado-claro);
-    }
-
+    .btn-primary { background: var(--dorado); color: var(--negro); }
+    .btn-primary:hover { background: var(--dorado-claro); transform: translateY(-1px); }
     .btn-outline {
-      background: transparent;
-      color: var(--crema);
-      border: 1px solid rgba(245, 237, 224, 0.3);
+      background: transparent; color: var(--crema);
+      border: 1px solid rgba(245,237,224,0.25);
     }
+    .btn-outline:hover { border-color: var(--dorado); color: var(--dorado); }
 
-    .btn-outline:hover {
-      border-color: var(--dorado);
-      color: var(--dorado);
+    /* ── HORARIO STRIP ── */
+    .horario-strip {
+      background: rgba(61,42,20,0.2);
+      border-top: 1px solid rgba(201,148,58,0.08);
+      border-bottom: 1px solid rgba(201,148,58,0.08);
+      padding: 1.2rem 2rem; text-align: center;
     }
+    .horario-strip p {
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(245,237,224,0.45);
+    }
+    .horario-strip strong { color: var(--dorado-claro); font-weight: 500; }
 
-    /* DIVIDER */
+    /* ── DIVIDER ── */
     .divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      max-width: 200px;
-      margin: 0 auto;
-      padding: 4rem 0 3rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      max-width: 160px; margin: 0 auto; padding: 3rem 0 2rem;
     }
-
-    .divider-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(201, 148, 58, 0.3);
-    }
-
+    .divider-line { flex: 1; height: 1px; background: rgba(201,148,58,0.22); }
     .divider-diamond {
-      width: 8px;
-      height: 8px;
-      background: var(--dorado);
-      transform: rotate(45deg);
-      opacity: 0.7;
+      width: 7px; height: 7px; background: var(--dorado);
+      transform: rotate(45deg); opacity: 0.55;
     }
 
-    /* SECTIONS */
-    section {
-      padding: 5rem 2rem;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
 
     .section-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--dorado);
-      margin-bottom: 1rem;
-      display: block;
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 0.8rem; display: block;
     }
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700;
+      line-height: 1.1; margin-bottom: 1.5rem;
     }
+    .section-title em { font-style: italic; color: var(--dorado-claro); }
 
-    .section-title em {
-      font-style: italic;
-      color: var(--dorado-claro);
-    }
-
-    /* CARTA NAVIGATION */
+    /* ── CARTA TABS ── */
     .carta-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      display: flex; flex-wrap: wrap; gap: 0.2rem;
       margin-bottom: 3rem;
-      border-bottom: 1px solid rgba(201, 148, 58, 0.15);
-      padding-bottom: 0;
+      border-bottom: 1px solid rgba(201,148,58,0.12); padding-bottom: 0;
     }
 
     .tab-btn {
-      background: none;
-      border: none;
-      color: rgba(245, 237, 224, 0.5);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.8rem 1.2rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
+      background: none; border: none;
+      color: rgba(245,237,224,0.42);
+      font-family: 'DM Sans', sans-serif; font-size: 0.74rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.75rem 1.05rem; cursor: pointer; transition: all 0.2s;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
     }
+    .tab-btn:hover { color: var(--crema); }
+    .tab-btn.active { color: var(--dorado); border-bottom-color: var(--dorado); }
 
-    .tab-btn:hover {
-      color: var(--crema);
-    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    .tab-btn.active {
-      color: var(--dorado);
-      border-bottom-color: var(--dorado);
-    }
-
-    .tab-panel {
-      display: none;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    /* MENU GRID */
+    /* ── MENU GRID ── */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px;
-      background: rgba(201, 148, 58, 0.08);
-      border: 1px solid rgba(201, 148, 58, 0.08);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: rgba(201,148,58,0.07);
+      border: 1px solid rgba(201,148,58,0.07);
     }
 
-    .menu-item {
-      background: var(--negro);
-      padding: 1.5rem 1.8rem;
-      transition: background 0.2s;
-    }
-
-    .menu-item:hover {
-      background: rgba(61, 42, 20, 0.4);
-    }
+    .menu-item { background: var(--negro); padding: 1.4rem 1.7rem; transition: background 0.2s; }
+    .menu-item:hover { background: rgba(61,42,20,0.45); }
 
     .menu-item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.4rem;
-      gap: 1rem;
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.35rem; gap: 1rem;
     }
 
     .menu-item-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--crema);
-      line-height: 1.2;
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 0.98rem; color: var(--crema); line-height: 1.2;
     }
 
-    .menu-item-price {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--dorado);
-      white-space: nowrap;
+    .menu-item-price { font-size: 0.82rem; font-weight: 500; color: var(--dorado); white-space: nowrap; }
+
+    .menu-item-desc { font-size: 0.75rem; color: rgba(245,237,224,0.4); line-height: 1.6; font-weight: 300; }
+
+    .menu-item-prices { display: flex; gap: 0.4rem; align-items: center; }
+    .price-label { font-size: 0.6rem; color: rgba(245,237,224,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .menu-subcategory {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--dorado); margin: 2rem 0 1rem;
+      padding-bottom: 0.4rem; border-bottom: 1px solid rgba(201,148,58,0.1);
     }
 
-    .menu-item-desc {
-      font-size: 0.78rem;
-      color: rgba(245, 237, 224, 0.45);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    /* Shots section with dual price */
-    .menu-item-prices {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    .price-label {
-      font-size: 0.62rem;
-      color: rgba(245, 237, 224, 0.35);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* SECTION: SOBRE NOSOTROS */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
 
     .about-text p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: rgba(245, 237, 224, 0.7);
-      margin-bottom: 1.2rem;
-      font-weight: 300;
+      font-size: 1rem; line-height: 1.85;
+      color: rgba(245,237,224,0.62); margin-bottom: 1.2rem; font-weight: 300;
     }
 
     .about-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: rgba(201, 148, 58, 0.15);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: rgba(201,148,58,0.12);
     }
 
-    .stat-card {
-      background: var(--negro);
-      padding: 2rem 1.5rem;
-      text-align: center;
+    .stat-card { background: var(--negro); padding: 2rem 1.5rem; text-align: center; }
+    .stat-card.wide {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(61,42,20,0.5), rgba(14,11,8,0.9));
     }
 
     .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--dorado);
-      line-height: 1;
-      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+      color: var(--dorado); line-height: 1; margin-bottom: 0.5rem;
     }
-
     .stat-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(245, 237, 224, 0.4);
+      font-size: 0.65rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(245,237,224,0.32);
     }
 
-    /* CONTACTO / FOOTER */
+    /* ── CONTACTO ── */
     .contact-section {
-      background: rgba(61, 42, 20, 0.2);
-      border-top: 1px solid rgba(201, 148, 58, 0.1);
-      border-bottom: 1px solid rgba(201, 148, 58, 0.1);
-      text-align: center;
-      padding: 5rem 2rem;
+      background: rgba(61,42,20,0.12);
+      border-top: 1px solid rgba(201,148,58,0.08);
+      text-align: center; padding: 5rem 2rem;
     }
 
     .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-      margin-top: 4rem;
-      text-align: left;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 3rem; margin-top: 4rem; text-align: left;
     }
 
     .contact-item-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--dorado);
-      margin-bottom: 0.6rem;
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 0.6rem;
     }
 
     .contact-item-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--crema);
-      line-height: 1.5;
+      font-family: 'Playfair Display', serif; font-size: 1.05rem;
+      color: var(--crema); line-height: 1.6;
     }
+    .contact-item-value a { color: var(--crema); text-decoration: none; transition: color 0.2s; }
+    .contact-item-value a:hover { color: var(--dorado-claro); }
+
+    .ig-btn {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+      color: #fff; padding: 0.9rem 2rem; border-radius: 4px;
+      text-decoration: none; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.2s; margin-top: 3rem;
+    }
+    .ig-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(131,58,180,0.3); }
+    .ig-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
 
     footer {
-      padding: 2rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.72rem;
-      color: rgba(245, 237, 224, 0.25);
-      letter-spacing: 0.1em;
+      padding: 2rem 3rem; display: flex;
+      justify-content: space-between; align-items: center;
+      font-size: 0.68rem; color: rgba(245,237,224,0.18);
+      letter-spacing: 0.08em; border-top: 1px solid rgba(201,148,58,0.06);
     }
 
     .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: rgba(201, 148, 58, 0.4);
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      color: rgba(201,148,58,0.32); font-size: 0.88rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
     }
 
-    /* SCROLL REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    /* ── FLOAT IG ── */
+    .float-ig {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 999;
+      width: 54px; height: 54px;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(131,58,180,0.4);
+      transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
     }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
+    .float-ig:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(131,58,180,0.5); }
+    .float-ig svg { width: 24px; height: 24px; fill: #fff; }
+    .float-tooltip {
+      position: absolute; right: 64px; top: 50%; transform: translateY(-50%);
+      background: rgba(14,11,8,0.95); color: var(--crema);
+      font-size: 0.72rem; font-weight: 500; white-space: nowrap;
+      padding: 0.4rem 0.8rem; border-radius: 6px;
+      border: 1px solid rgba(201,148,58,0.15);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
     }
+    .float-ig:hover .float-tooltip { opacity: 1; }
 
-    /* MOBILE */
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-links {
-        gap: 1.2rem;
-      }
-
-      .nav-links a {
-        font-size: 0.7rem;
-      }
-
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 3.5rem 1.5rem;
-      }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      h1 { font-size: clamp(3.5rem, 14vw, 5rem); }
+      section { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .menu-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 1.5rem; }
+      .carta-tabs { gap: 0.1rem; }
+      .tab-btn { font-size: 0.68rem; padding: 0.65rem 0.8rem; letter-spacing: 0.07em; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">Autóctono</div>
-    <ul class="nav-links">
-      <li><a href="#carta">Carta</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Autóctono</a>
+  <ul class="nav-links">
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-ornament"></div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#carta">Carta</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+</div>
 
-    <div class="hero-eyebrow">
-      <span></span>Bar &amp; Coctelería<span></span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-badge">Martes a domingo · Desde las 19:00</div>
+  <div class="hero-eyebrow"><span></span>Bar &amp; Coctelería<span></span></div>
+  <h1>Bar<br><em>Autóctono</em></h1>
+  <p class="hero-subtitle">Tragos con carácter, ambiente de barrio</p>
+  <p class="hero-location">La Reina · Santiago de Chile</p>
+  <div class="hero-cta">
+    <a href="#carta" class="btn btn-primary">Ver la Carta</a>
+    <a href="#contacto" class="btn btn-outline">Cómo llegar</a>
+  </div>
+</section>
+
+<!-- HORARIO STRIP -->
+<div class="horario-strip">
+  <p><strong>Martes a Domingo</strong> &nbsp;·&nbsp; Abrimos a las <strong>19:00 hrs</strong> &nbsp;·&nbsp; La Reina, Santiago</p>
+</div>
+
+<!-- CARTA -->
+<section id="carta">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Lo que servimos</span>
+      <h2 class="section-title">Nuestra <em>Carta</em></h2>
     </div>
 
-    <h1>Bar<br><em>Autóctono</em></h1>
-
-    <p class="hero-subtitle">Tragos con carácter, ambiente de barrio</p>
-    <p class="hero-location">Las Condes — La Reina, Santiago</p>
-
-    <div class="hero-cta">
-      <a href="#carta" class="btn btn-primary">Ver la Carta</a>
-      <a href="#contacto" class="btn btn-outline">Cómo llegar</a>
+    <div class="carta-tabs reveal">
+      <button class="tab-btn active" data-tab="sours">Sours</button>
+      <button class="tab-btn" data-tab="clasicos">Clásicos</button>
+      <button class="tab-btn" data-tab="mules">Mules</button>
+      <button class="tab-btn" data-tab="aperitivos">Aperitivos &amp; Spritz</button>
+      <button class="tab-btn" data-tab="gin">Gin</button>
+      <button class="tab-btn" data-tab="especiales">Especiales</button>
+      <button class="tab-btn" data-tab="shots">Shots &amp; Pisco</button>
+      <button class="tab-btn" data-tab="comida">Comida</button>
+      <button class="tab-btn" data-tab="bebidas">Bebidas</button>
     </div>
-  </section>
 
-  <!-- CARTA -->
-  <section id="carta">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">Lo que servimos</span>
-        <h2 class="section-title">Nuestra <em>Carta</em></h2>
-      </div>
-
-      <div class="carta-tabs reveal">
-        <button class="tab-btn active" onclick="showTab('sours')">Sours</button>
-        <button class="tab-btn" onclick="showTab('clasicos')">Clásicos</button>
-        <button class="tab-btn" onclick="showTab('mules')">Mules</button>
-        <button class="tab-btn" onclick="showTab('aperitivos')">Aperitivos & Spritz</button>
-        <button class="tab-btn" onclick="showTab('gin')">Gin</button>
-        <button class="tab-btn" onclick="showTab('tragos-extras')">Especiales</button>
-        <button class="tab-btn" onclick="showTab('shots')">Shots & Pisco</button>
-        <button class="tab-btn" onclick="showTab('comida')">Comida</button>
-        <button class="tab-btn" onclick="showTab('bebestibles')">Bebidas</button>
-      </div>
-
-      <!-- SOURS -->
-      <div id="tab-sours" class="tab-panel active reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Pisco Sour</span>
-              <span class="menu-item-price">$4.000</span>
-            </div>
-            <p class="menu-item-desc">Pisco Tres Erres 40°, Limón, Syrup</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Pisco Sour Peruano Catedral</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Pisco Peruano Barsol, Limón, Syrup, Albumina, Amargo de Angostura</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Ramazotti Sour</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Ramazotti, Limón, Syrup, Albumina</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Johnnie Sour</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Johnnie Walker Red Label, Limón, Syrup, Albumina</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Disaronno Sour</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Amaretto Disaronno, Limón, Syrup</p>
-          </div>
+    <!-- SOURS -->
+    <div id="tab-sours" class="tab-panel active reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Pisco Sour</span><span class="menu-item-price">$4.000</span></div>
+          <p class="menu-item-desc">Pisco Tres Erres 40°, Limón, Syrup</p>
         </div>
-      </div>
-
-      <!-- CLASICOS -->
-      <div id="tab-clasicos" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Chilcano</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Pisco Barsol, Limón, Syrup, Amargo de Angostura & Ginger Ale</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Pichucho</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Pisco 3R, Vermouth Rosso, Amargo de Angostura</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tom Collins</span>
-              <span class="menu-item-price">$5.000</span>
-            </div>
-            <p class="menu-item-desc">Gin Beefeater, Limón, Syrup, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">John Collins</span>
-              <span class="menu-item-price">$5.000</span>
-            </div>
-            <p class="menu-item-desc">Whisky Johnnie Walker Red Label, Limón, Syrup, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Mojito</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Ron Blanco, Macerado de Limón Sutil, Menta, Syrup</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Mojito Sabores</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Ron Blanco, Macerado de Limón Sutil, Menta, Syrup, Pulpa — Maracuyá / Mango /
-              Frambuesa</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Caipirinha</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Cachaza 51, Macerado de Limón Sutil, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Caiproska</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Vodka, Macerado de Limón Sutil, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tequila Margarita</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Tequila Olmeca, Triple Sec, Limón, Syrup, Enllantado en Sal</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Blue Margarita</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Tequila Olmeca, Curaçao Blue, Limón, Syrup, Enllantado en Sal</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Ruso Blanco</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Vodka, Licor de Café, Syrup, Crema</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Ruso Negro</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Vodka, Licor de Café, Syrup</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Clavo Oxidado</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Whisky Johnnie Red, Drambuie, Clavos de Olor</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">El Padrino</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Whisky Johnnie Red, Disaronno Amaretto</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Kir Royal</span>
-              <span class="menu-item-price">$4.000</span>
-            </div>
-            <p class="menu-item-desc">Espumante, Licor de Cassis</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Mimosa</span>
-              <span class="menu-item-price">$4.000</span>
-            </div>
-            <p class="menu-item-desc">Espumante, Jugo de Naranja</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Sangría</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Vino, Syrup, Especias Aromáticas, Fruta Picada</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Daiquiri Sabores</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Ron Blanco, Limón, Triple Sec, Syrup & Pulpa a Elección</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Piña Colada</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Ron Blanco, Malibú, Crema, Coco López & Pulpa de Piña</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Frutilla Colada</span>
-              <span class="menu-item-price">$4.900</span>
-            </div>
-            <p class="menu-item-desc">Ron Blanco, Malibú, Crema, Coco López & Pulpa de Frutilla</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Padrino Velvet</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Whisky Johnnie Red, Disaronno Velvet</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Marakinha</span>
-              <span class="menu-item-price">$5.900</span>
-            </div>
-            <p class="menu-item-desc">Cachaza 51, Macerado de Limón Sutil, Pulpa de Maracuyá</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Espresso Martini</span>
-              <span class="menu-item-price">$5.500</span>
-            </div>
-            <p class="menu-item-desc">Vodka, Espresso, Licor de Café & Syrup</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Velvet Espresso Martini</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Disaronno Velvet, Licor de Café, Vodka, Espresso</p>
-          </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Pisco Sour Peruano Catedral</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Pisco Peruano Barsol, Limón, Syrup, Albumina, Amargo de Angostura</p>
         </div>
-      </div>
-
-      <!-- MULES -->
-      <div id="tab-mules" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Moscow Mule</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Vodka Absolut, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">London Mule</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Gin Beefeater, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Berlin Mule</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Jagermeister, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Mexican Mule</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Tequila Olmeca, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Honey Mule</span>
-              <span class="menu-item-price">$7.900</span>
-            </div>
-            <p class="menu-item-desc">Jack Daniel's Honey, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tenesse Mule</span>
-              <span class="menu-item-price">$7.900</span>
-            </div>
-            <p class="menu-item-desc">Jack Daniel's N°7, Limón, Syrup, Ginger Beer</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Disaronno Mule</span>
-              <span class="menu-item-price">$7.900</span>
-            </div>
-            <p class="menu-item-desc">Disaronno, Limón, Syrup, Ginger Beer</p>
-          </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Ramazotti Sour</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Ramazotti, Limón, Syrup, Albumina</p>
         </div>
-      </div>
-
-      <!-- APERITIVOS & SPRITZ -->
-      <div id="tab-aperitivos" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Campari Soda</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Campari, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Vermouth Soda</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Vermouth Rosso, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Campari Tónica</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Campari, Tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Vermouth Tónica</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Vermouth Rosso, Tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Garibaldi</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Campari, Jugo de Naranja</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Aperol Spritz</span>
-              <span class="menu-item-price">$5.800</span>
-            </div>
-            <p class="menu-item-desc">Aperol, Espumante y Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Ramazotti Spritz</span>
-              <span class="menu-item-price">$5.800</span>
-            </div>
-            <p class="menu-item-desc">Ramazotti, Espumante y Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Campari Spritz</span>
-              <span class="menu-item-price">$5.800</span>
-            </div>
-            <p class="menu-item-desc">Campari, Espumante y Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">St. Germain Spritz</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Saint Germain, Espumante y Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Negroni</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Gin, Campari, Vermouth</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Negroni Sbagliato</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Campari, Vermouth, Espumante</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Milano Torino</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Vermouth, Campari</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Americano</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Campari, Vermouth, Soda</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Boulevardier</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Bourbon, Campari, Vermouth</p>
-          </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Johnnie Sour</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Johnnie Walker Red Label, Limón, Syrup, Albumina</p>
         </div>
-      </div>
-
-      <!-- GIN -->
-      <div id="tab-gin" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tropical Gin</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Gin Beefeater, Limón, Menta & Redbull Tropical</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Summer Gin</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Gin Beefeater Pink & Redbull Sandia o Arándanos</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Dragon Gin</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Gin Beefeater & Redbull Dragon Fruit</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Beefeater London Dry</span>
-              <span class="menu-item-price">$5.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Beefeater Pink</span>
-              <span class="menu-item-price">$5.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tanqueray London Dry</span>
-              <span class="menu-item-price">$5.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tanqueray Royale</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tanqueray Sevilla</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Bulldog</span>
-              <span class="menu-item-price">$6.900</span>
-            </div>
-            <p class="menu-item-desc">Solo o con tónica</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ESPECIALES -->
-      <div id="tab-tragos-extras" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Johnnie Walker Red</span>
-              <span class="menu-item-price">$5.000</span>
-            </div>
-            <p class="menu-item-desc">Servido solo o con hielo</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Johnnie Walker Black</span>
-              <span class="menu-item-price">$6.500</span>
-            </div>
-            <p class="menu-item-desc">Servido solo o con hielo</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jack Daniel's N°7</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Tennessee Whiskey clásico</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jack Daniel's Fire</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Con toque de canela</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jack Daniel's Honey</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Con toque de miel</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jack Daniel's Apple</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Con toque de manzana verde</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Disaronno</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Amaretto italiano</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Disaronno Velvet</span>
-              <span class="menu-item-price">$6.000</span>
-            </div>
-            <p class="menu-item-desc">Versión cremosa del Disaronno</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Fernet Branca</span>
-              <span class="menu-item-price">desde $6.500</span>
-            </div>
-            <p class="menu-item-desc">Solo o con Coca-Cola</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jagermeister</span>
-              <span class="menu-item-price">desde $6.500</span>
-            </div>
-            <p class="menu-item-desc">Solo o mezclado</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- SHOTS & PISCO -->
-      <div id="tab-shots" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tres Erres 40°</span>
-              <div class="menu-item-prices">
-                <span class="price-label">Solo</span>
-                <span class="menu-item-price">$5.000</span>
-                <span class="price-label">+ Bebida</span>
-                <span class="menu-item-price">$6.900</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Alto del Carmen</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$4.500 / $6.400</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Alto del Carmen 40° Transparente</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$5.000 / $6.900</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Mistral 35°</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$4.500 / $6.400</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Republicano 40° Añejado</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$5.500 / $7.500</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Barceló Añejo</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$4.500 / $6.000</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Havana Añejo Especial</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$4.500 / $6.400</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Stoli Vodka</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$4.000 / $6.000</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Absolut Blue</span>
-              <div class="menu-item-prices">
-                <span class="menu-item-price">$6.000 / $8.900</span>
-              </div>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Tequilazo</span>
-              <span class="menu-item-price">$3.500</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Cucaracha</span>
-              <span class="menu-item-price">$3.500</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Promo Mistral</span>
-              <span class="menu-item-price">$8.500</span>
-            </div>
-            <p class="menu-item-desc">2 cortos de Mistral + 1 Bebida + 1 Redbull</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- COMIDA -->
-      <div id="tab-comida" class="tab-panel reveal">
-        <div style="margin-bottom: 2rem;">
-          <p
-            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dorado); margin-bottom: 1rem;">
-            Hamburguesas — todas con papas fritas</p>
-          <div class="menu-grid">
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">La Damián Burger</span>
-                <span class="menu-item-price">$7.990</span>
-              </div>
-              <p class="menu-item-desc">Pan de papa, hamburguesa smash, tomate, palta & mayo</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">La Rodeo Queen</span>
-                <span class="menu-item-price">$7.990</span>
-              </div>
-              <p class="menu-item-desc">Pan de papa, hamburguesa smash, tocino USA, queso cheddar, aros de cebolla &
-                salsa BBQ</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">La Burger Queso</span>
-                <span class="menu-item-price">$7.990</span>
-              </div>
-              <p class="menu-item-desc">Pan de papa, smash, queso cheddar, pepinillo, cebolla blanca, mostaza & ketchup
-              </p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">La Clásica de Siempre</span>
-                <span class="menu-item-price">$7.990</span>
-              </div>
-              <p class="menu-item-desc">Pan de papa, smash, queso cheddar, pepinillos, lechuga, tomate, cebolla morada &
-                salsa big</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">La Kraken Burger</span>
-                <span class="menu-item-price">$7.990</span>
-              </div>
-              <p class="menu-item-desc">Pan de papa, smash, queso cheddar, cebolla caramelizada, champiñones, rúcula &
-                mayonesa</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 2rem;">
-          <p
-            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dorado); margin-bottom: 1rem;">
-            Picoteos</p>
-          <div class="menu-grid">
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Chicken Nuggets</span>
-                <span class="menu-item-price">$3.500</span>
-              </div>
-              <p class="menu-item-desc">10 unidades, mini croquetas de pollo</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Onion Rings</span>
-                <span class="menu-item-price">$3.500</span>
-              </div>
-              <p class="menu-item-desc">10 unidades, aros de cebolla</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Cheddar Jalapeño</span>
-                <span class="menu-item-price">$4.500</span>
-              </div>
-              <p class="menu-item-desc">10 unidades, apanado de cheddar y jalapeño</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Mozzarella Sticks</span>
-                <span class="menu-item-price">$4.500</span>
-              </div>
-              <p class="menu-item-desc">10 unidades, bastones de queso</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Empanadas de Queso</span>
-                <span class="menu-item-price">$4.500</span>
-              </div>
-              <p class="menu-item-desc">10 unidades</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Appetizer Mix</span>
-                <span class="menu-item-price">$7.500</span>
-              </div>
-              <p class="menu-item-desc">4 onion rings, 4 nuggets, 4 cheddar jalapeño, 4 cheese finger, 4 empanaditas</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 2rem;">
-          <p
-            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dorado); margin-bottom: 1rem;">
-            Papas fritas</p>
-          <div class="menu-grid">
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Papas Pequeñas (300g)</span>
-                <span class="menu-item-price">$4.000</span>
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Papas Grandes (600g)</span>
-                <span class="menu-item-price">$5.500</span>
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Papas Ciboulette</span>
-                <span class="menu-item-price">$8.500</span>
-              </div>
-              <p class="menu-item-desc">Con salsa a base de crema & ciboulette</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Papas Champiñón</span>
-                <span class="menu-item-price">$8.500</span>
-              </div>
-              <p class="menu-item-desc">Con salsa de crema & champiñones salteados</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Papas Camarón</span>
-                <span class="menu-item-price">$12.000</span>
-              </div>
-              <p class="menu-item-desc">Con salsa de crema & camarones salteados</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 2rem;">
-          <p
-            style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dorado); margin-bottom: 1rem;">
-            Completos Fritanga</p>
-          <div class="menu-grid">
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Vegetariana</span>
-                <span class="menu-item-price">$11.000</span>
-              </div>
-              <p class="menu-item-desc">Papas fritas, mix de vegetales salteados, crema, queso</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Clásica</span>
-                <span class="menu-item-price">$13.000</span>
-              </div>
-              <p class="menu-item-desc">Papas fritas, carne de vacuno, longaniza, cebolla, huevos fritos</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Mongoliana</span>
-                <span class="menu-item-price">$13.000</span>
-              </div>
-              <p class="menu-item-desc">Papas fritas, carne de vacuno, cebollin, soya</p>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-header">
-                <span class="menu-item-name">Autóctona ⭐</span>
-                <span class="menu-item-price">$15.000</span>
-              </div>
-              <p class="menu-item-desc">Papas fritas, carne, pollo, camarones, champiñón, cebollin, aceitunas, maní,
-                crema soya</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BEBIDAS -->
-      <div id="tab-bebestibles" class="tab-panel reveal">
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Bebida 350cc</span>
-              <span class="menu-item-price">$2.000</span>
-            </div>
-            <p class="menu-item-desc">Coca Original / Zero / Light — Sprite / Sprite Zero / Fanta</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Agua Mineral 600cc</span>
-              <span class="menu-item-price">$2.000</span>
-            </div>
-            <p class="menu-item-desc">Con gas & sin gas</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Schweppes 310cc</span>
-              <span class="menu-item-price">$2.000</span>
-            </div>
-            <p class="menu-item-desc">Agua Tónica / Tónica Zero / Tónica Pink / Ginger Ale / Ginger Ale Zero</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">RedBull</span>
-              <span class="menu-item-price">$3.200</span>
-            </div>
-            <p class="menu-item-desc">Normal / Sugar Free / Sandía / Arándanos / Tropical / Dragon Fruit</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Fentimans Tonic 200cc</span>
-              <span class="menu-item-price">$2.500</span>
-            </div>
-            <p class="menu-item-desc">Tonic Water / Ginger Beer / Rose Lemonade</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Corteza Jesuita Tonic 200cc</span>
-              <span class="menu-item-price">$2.500</span>
-            </div>
-            <p class="menu-item-desc">Pink Tonic Zero / Ginger Beer Zero / Tonic Zero</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Jugos</span>
-              <span class="menu-item-price">$3.500</span>
-            </div>
-            <p class="menu-item-desc">Frutilla / Frambuesa / Mango / Maracuyá / Piña — con azúcar adicional</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Limonada</span>
-              <span class="menu-item-price">$3.500</span>
-            </div>
-            <p class="menu-item-desc">Tradicional / Menta / Menta Jengibre / Jengibre</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Virgin Colada</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Sin alcohol</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Toi Chang Tao</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Mango, limón & té verde — sin alcohol</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Lechuga Como Fresca</span>
-              <span class="menu-item-price">$4.500</span>
-            </div>
-            <p class="menu-item-desc">Piña, jengibre & coco López — sin alcohol</p>
-          </div>
-          <div class="menu-item">
-            <div class="menu-item-header">
-              <span class="menu-item-name">Escudo</span>
-              <span class="menu-item-price">$4.000</span>
-            </div>
-            <p class="menu-item-desc">Cerveza</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- NOSOTROS -->
-  <section id="nosotros" style="background: rgba(61,42,20,0.12); border-top: 1px solid rgba(201,148,58,0.08);">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <span class="section-label">Quiénes somos</span>
-          <h2 class="section-title">Un rincón <em>auténtico</em><br>en La Reina</h2>
-          <p>Bar Autóctono nació con una idea simple: hacer que cada noche valga. Somos un bar de barrio que se toma en
-            serio la coctelería, la buena comida y las personas que nos visitan.</p>
-          <p>Pequeños pero con mucho carácter. Nuestra carta abarca desde el Pisco Sour más clásico hasta Mules con
-            sabores propios, pasando por una fritanga que habla solo.</p>
-          <p>Ven como quieras, quédate el tiempo que quieras.</p>
-        </div>
-        <div class="about-visual reveal">
-          <div class="stat-card">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Tragos en carta</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">5</div>
-            <div class="stat-label">Burgers distintas</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Sabor de barrio</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">La<br>Reina</div>
-            <div class="stat-label">Ubicación</div>
-          </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Disaronno Sour</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Amaretto Disaronno, Limón, Syrup</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACTO -->
-  <div id="contacto" class="contact-section">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">Encuéntranos</span>
-        <h2 class="section-title">Ven a vernos</h2>
+    <!-- CLASICOS -->
+    <div id="tab-clasicos" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Chilcano</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Pisco Barsol, Limón, Syrup, Amargo de Angostura &amp; Ginger Ale</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Pichucho</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Pisco 3R, Vermouth Rosso, Amargo de Angostura</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tom Collins</span><span class="menu-item-price">$5.000</span></div>
+          <p class="menu-item-desc">Gin Beefeater, Limón, Syrup, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">John Collins</span><span class="menu-item-price">$5.000</span></div>
+          <p class="menu-item-desc">Whisky Johnnie Walker Red Label, Limón, Syrup, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mojito</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Ron Blanco, Macerado de Limón Sutil, Menta, Syrup</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mojito Sabores</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Ron Blanco, Macerado de Limón Sutil, Menta, Syrup, Pulpa — Maracuyá / Mango / Frambuesa</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Caipirinha</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Cachaza 51, Macerado de Limón Sutil, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Caiproska</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Vodka, Macerado de Limón Sutil, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tequila Margarita</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Tequila Olmeca, Triple Sec, Limón, Syrup, Enllantado en Sal</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Blue Margarita</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Tequila Olmeca, Curaçao Blue, Limón, Syrup, Enllantado en Sal</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Ruso Blanco</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Vodka, Licor de Café, Syrup, Crema</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Ruso Negro</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Vodka, Licor de Café, Syrup</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Clavo Oxidado</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Whisky Johnnie Red, Drambuie, Clavos de Olor</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">El Padrino</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Whisky Johnnie Red, Disaronno Amaretto</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Kir Royal</span><span class="menu-item-price">$4.000</span></div>
+          <p class="menu-item-desc">Espumante, Licor de Cassis</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mimosa</span><span class="menu-item-price">$4.000</span></div>
+          <p class="menu-item-desc">Espumante, Jugo de Naranja</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Sangría</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Vino, Syrup, Especias Aromáticas, Fruta Picada</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Daiquiri Sabores</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Ron Blanco, Limón, Triple Sec, Syrup &amp; Pulpa a Elección</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Piña Colada</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Ron Blanco, Malibú, Crema, Coco López &amp; Pulpa de Piña</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Frutilla Colada</span><span class="menu-item-price">$4.900</span></div>
+          <p class="menu-item-desc">Ron Blanco, Malibú, Crema, Coco López &amp; Pulpa de Frutilla</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Padrino Velvet</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Whisky Johnnie Red, Disaronno Velvet</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Marakinha</span><span class="menu-item-price">$5.900</span></div>
+          <p class="menu-item-desc">Cachaza 51, Macerado de Limón Sutil, Pulpa de Maracuyá</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Espresso Martini</span><span class="menu-item-price">$5.500</span></div>
+          <p class="menu-item-desc">Vodka, Espresso, Licor de Café &amp; Syrup</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Velvet Espresso Martini</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Disaronno Velvet, Licor de Café, Vodka, Espresso</p>
+        </div>
       </div>
-      <div class="contact-grid reveal">
-        <div>
-          <p class="contact-item-label">Dirección</p>
-          <p class="contact-item-value">La Reina<br>Santiago, Chile</p>
+    </div>
+
+    <!-- MULES -->
+    <div id="tab-mules" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Moscow Mule</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Vodka Absolut, Limón, Syrup, Ginger Beer</p>
         </div>
-        <div>
-          <p class="contact-item-label">Horarios</p>
-          <p class="contact-item-value">Martes a Domingo<br>Desde las 19:00 hrs</p>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">London Mule</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Gin Beefeater, Limón, Syrup, Ginger Beer</p>
         </div>
-        <div>
-          <p class="contact-item-label">Redes sociales</p>
-          <p class="contact-item-value">@barautoctono<br>Instagram</p>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Berlin Mule</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Jagermeister, Limón, Syrup, Ginger Beer</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mexican Mule</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Tequila Olmeca, Limón, Syrup, Ginger Beer</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Honey Mule</span><span class="menu-item-price">$7.900</span></div>
+          <p class="menu-item-desc">Jack Daniel's Honey, Limón, Syrup, Ginger Beer</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tennessee Mule</span><span class="menu-item-price">$7.900</span></div>
+          <p class="menu-item-desc">Jack Daniel's N°7, Limón, Syrup, Ginger Beer</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Disaronno Mule</span><span class="menu-item-price">$7.900</span></div>
+          <p class="menu-item-desc">Disaronno, Limón, Syrup, Ginger Beer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APERITIVOS -->
+    <div id="tab-aperitivos" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Campari Soda</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Campari, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Vermouth Soda</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Vermouth Rosso, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Campari Tónica</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Campari, Tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Vermouth Tónica</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Vermouth Rosso, Tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Garibaldi</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Campari, Jugo de Naranja</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Aperol Spritz</span><span class="menu-item-price">$5.800</span></div>
+          <p class="menu-item-desc">Aperol, Espumante y Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Ramazotti Spritz</span><span class="menu-item-price">$5.800</span></div>
+          <p class="menu-item-desc">Ramazotti, Espumante y Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Campari Spritz</span><span class="menu-item-price">$5.800</span></div>
+          <p class="menu-item-desc">Campari, Espumante y Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">St. Germain Spritz</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Saint Germain, Espumante y Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Negroni</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Gin, Campari, Vermouth</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Negroni Sbagliato</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Campari, Vermouth, Espumante</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Milano Torino</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Vermouth, Campari</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Americano</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Campari, Vermouth, Soda</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Boulevardier</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Bourbon, Campari, Vermouth</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIN -->
+    <div id="tab-gin" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tropical Gin</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Gin Beefeater, Limón, Menta &amp; Redbull Tropical</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Summer Gin</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Gin Beefeater Pink &amp; Redbull Sandía o Arándanos</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Dragon Gin</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Gin Beefeater &amp; Redbull Dragon Fruit</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Beefeater London Dry</span><span class="menu-item-price">$5.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Beefeater Pink</span><span class="menu-item-price">$5.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tanqueray London Dry</span><span class="menu-item-price">$5.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tanqueray Royale</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tanqueray Sevilla</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Bulldog</span><span class="menu-item-price">$6.900</span></div>
+          <p class="menu-item-desc">Solo o con tónica</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESPECIALES -->
+    <div id="tab-especiales" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Johnnie Walker Red</span><span class="menu-item-price">$5.000</span></div>
+          <p class="menu-item-desc">Servido solo o con hielo</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Johnnie Walker Black</span><span class="menu-item-price">$6.500</span></div>
+          <p class="menu-item-desc">Servido solo o con hielo</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jack Daniel's N°7</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Tennessee Whiskey clásico</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jack Daniel's Fire</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Con toque de canela</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jack Daniel's Honey</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Con toque de miel</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jack Daniel's Apple</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Con toque de manzana verde</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Disaronno</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Amaretto italiano</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Disaronno Velvet</span><span class="menu-item-price">$6.000</span></div>
+          <p class="menu-item-desc">Versión cremosa del Disaronno</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Fernet Branca</span><span class="menu-item-price">desde $6.500</span></div>
+          <p class="menu-item-desc">Solo o con Coca-Cola</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jagermeister</span><span class="menu-item-price">desde $6.500</span></div>
+          <p class="menu-item-desc">Solo o mezclado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOTS & PISCO -->
+    <div id="tab-shots" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Tres Erres 40°</span>
+            <div class="menu-item-prices"><span class="price-label">Solo</span><span class="menu-item-price">$5.000</span><span class="price-label">+ Bebida</span><span class="menu-item-price">$6.900</span></div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Alto del Carmen</span>
+            <span class="menu-item-price">$4.500 / $6.400</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Alto del Carmen 40° Transparente</span>
+            <span class="menu-item-price">$5.000 / $6.900</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Mistral 35°</span>
+            <span class="menu-item-price">$4.500 / $6.400</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Republicano 40° Añejado</span>
+            <span class="menu-item-price">$5.500 / $7.500</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Barceló Añejo</span>
+            <span class="menu-item-price">$4.500 / $6.000</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Havana Añejo Especial</span>
+            <span class="menu-item-price">$4.500 / $6.400</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Stoli Vodka</span>
+            <span class="menu-item-price">$4.000 / $6.000</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Absolut Blue</span>
+            <span class="menu-item-price">$6.000 / $8.900</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Tequilazo</span><span class="menu-item-price">$3.500</span></div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Cucaracha</span><span class="menu-item-price">$3.500</span></div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Promo Mistral</span><span class="menu-item-price">$8.500</span></div>
+          <p class="menu-item-desc">2 cortos de Mistral + 1 Bebida + 1 Redbull</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMIDA -->
+    <div id="tab-comida" class="tab-panel reveal">
+      <p class="menu-subcategory">Hamburguesas — todas con papas fritas</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">La Damián Burger</span><span class="menu-item-price">$7.990</span></div>
+          <p class="menu-item-desc">Pan de papa, hamburguesa smash, tomate, palta &amp; mayo</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">La Rodeo Queen</span><span class="menu-item-price">$7.990</span></div>
+          <p class="menu-item-desc">Pan de papa, hamburguesa smash, tocino USA, queso cheddar, aros de cebolla &amp; salsa BBQ</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">La Burger Queso</span><span class="menu-item-price">$7.990</span></div>
+          <p class="menu-item-desc">Pan de papa, smash, queso cheddar, pepinillo, cebolla blanca, mostaza &amp; ketchup</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">La Clásica de Siempre</span><span class="menu-item-price">$7.990</span></div>
+          <p class="menu-item-desc">Pan de papa, smash, queso cheddar, pepinillos, lechuga, tomate, cebolla morada &amp; salsa big</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">La Kraken Burger</span><span class="menu-item-price">$7.990</span></div>
+          <p class="menu-item-desc">Pan de papa, smash, queso cheddar, cebolla caramelizada, champiñones, rúcula &amp; mayonesa</p>
+        </div>
+      </div>
+
+      <p class="menu-subcategory">Picoteos</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Chicken Nuggets</span><span class="menu-item-price">$3.500</span></div>
+          <p class="menu-item-desc">10 unidades, mini croquetas de pollo</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Onion Rings</span><span class="menu-item-price">$3.500</span></div>
+          <p class="menu-item-desc">10 unidades, aros de cebolla</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Cheddar Jalapeño</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">10 unidades, apanado de cheddar y jalapeño</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mozzarella Sticks</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">10 unidades, bastones de queso</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Empanadas de Queso</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">10 unidades</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Appetizer Mix</span><span class="menu-item-price">$7.500</span></div>
+          <p class="menu-item-desc">4 onion rings, 4 nuggets, 4 cheddar jalapeño, 4 cheese finger, 4 empanaditas</p>
+        </div>
+      </div>
+
+      <p class="menu-subcategory">Papas Fritas</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Papas Pequeñas (300g)</span><span class="menu-item-price">$4.000</span></div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Papas Grandes (600g)</span><span class="menu-item-price">$5.500</span></div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Papas Ciboulette</span><span class="menu-item-price">$8.500</span></div>
+          <p class="menu-item-desc">Con salsa a base de crema &amp; ciboulette</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Papas Champiñón</span><span class="menu-item-price">$8.500</span></div>
+          <p class="menu-item-desc">Con salsa de crema &amp; champiñones salteados</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Papas Camarón</span><span class="menu-item-price">$12.000</span></div>
+          <p class="menu-item-desc">Con salsa de crema &amp; camarones salteados</p>
+        </div>
+      </div>
+
+      <p class="menu-subcategory">Completos Fritanga</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Vegetariana</span><span class="menu-item-price">$11.000</span></div>
+          <p class="menu-item-desc">Papas fritas, mix de vegetales salteados, crema, queso</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Clásica</span><span class="menu-item-price">$13.000</span></div>
+          <p class="menu-item-desc">Papas fritas, carne de vacuno, longaniza, cebolla, huevos fritos</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Mongoliana</span><span class="menu-item-price">$13.000</span></div>
+          <p class="menu-item-desc">Papas fritas, carne de vacuno, cebollin, soya</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Autóctona ⭐</span><span class="menu-item-price">$15.000</span></div>
+          <p class="menu-item-desc">Papas fritas, carne, pollo, camarones, champiñón, cebollin, aceitunas, maní, crema soya</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS -->
+    <div id="tab-bebidas" class="tab-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Bebida 350cc</span><span class="menu-item-price">$2.000</span></div>
+          <p class="menu-item-desc">Coca Original / Zero / Light — Sprite / Sprite Zero / Fanta</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Agua Mineral 600cc</span><span class="menu-item-price">$2.000</span></div>
+          <p class="menu-item-desc">Con gas &amp; sin gas</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Schweppes 310cc</span><span class="menu-item-price">$2.000</span></div>
+          <p class="menu-item-desc">Agua Tónica / Tónica Zero / Tónica Pink / Ginger Ale / Ginger Ale Zero</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">RedBull</span><span class="menu-item-price">$3.200</span></div>
+          <p class="menu-item-desc">Normal / Sugar Free / Sandía / Arándanos / Tropical / Dragon Fruit</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Fentimans Tonic 200cc</span><span class="menu-item-price">$2.500</span></div>
+          <p class="menu-item-desc">Tonic Water / Ginger Beer / Rose Lemonade</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Corteza Jesuita Tonic 200cc</span><span class="menu-item-price">$2.500</span></div>
+          <p class="menu-item-desc">Pink Tonic Zero / Ginger Beer Zero / Tonic Zero</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Jugos</span><span class="menu-item-price">$3.500</span></div>
+          <p class="menu-item-desc">Frutilla / Frambuesa / Mango / Maracuyá / Piña</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Limonada</span><span class="menu-item-price">$3.500</span></div>
+          <p class="menu-item-desc">Tradicional / Menta / Menta Jengibre / Jengibre</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Virgin Colada</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Sin alcohol</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Toi Chang Tao</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Mango, limón &amp; té verde — sin alcohol</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Lechuga Como Fresca</span><span class="menu-item-price">$4.500</span></div>
+          <p class="menu-item-desc">Piña, jengibre &amp; coco López — sin alcohol</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header"><span class="menu-item-name">Escudo</span><span class="menu-item-price">$4.000</span></div>
+          <p class="menu-item-desc">Cerveza</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" style="background: rgba(61,42,20,0.1); border-top: 1px solid rgba(201,148,58,0.07);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label">Quiénes somos</span>
+        <h2 class="section-title">Un rincón <em>auténtico</em><br>en La Reina</h2>
+        <p>Bar Autóctono nació con una idea simple: hacer que cada noche valga. Somos un bar de barrio que se toma en serio la coctelería, la buena comida y las personas que nos visitan.</p>
+        <p>Pequeños pero con mucho carácter. Nuestra carta abarca desde el Pisco Sour más clásico hasta Mules con sabores propios, pasando por una fritanga que habla sola.</p>
+        <p>Ven como quieras, quédate el tiempo que quieras.</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="stat-card wide">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Tragos en carta</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Burgers distintas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Sabor de barrio</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-logo">Bar Autóctono</span>
-    <span>La Reina, Santiago — Coctelería & Bar</span>
-  </footer>
+<!-- CONTACTO -->
+<div id="contacto" class="contact-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Encuéntranos</span>
+      <h2 class="section-title">Ven a <em>vernos</em></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <p class="contact-item-label">Dirección</p>
+        <p class="contact-item-value">
+          <a href="https://www.google.com/maps/search/La+Reina+Santiago" target="_blank" rel="noopener">La Reina<br>Santiago, Chile</a>
+        </p>
+      </div>
+      <div>
+        <p class="contact-item-label">Horarios</p>
+        <p class="contact-item-value">Martes a Domingo<br>Desde las 19:00 hrs</p>
+      </div>
+      <div>
+        <p class="contact-item-label">Redes sociales</p>
+        <p class="contact-item-value">
+          <a href="https://www.instagram.com/barautoctono" target="_blank" rel="noopener">@barautoctono<br>Instagram</a>
+        </p>
+      </div>
+    </div>
+    <a href="https://www.instagram.com/barautoctono" target="_blank" rel="noopener" class="ig-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Seguirnos en Instagram
+    </a>
+  </div>
+</div>
 
-  <script>
-    function showTab(id) {
+<footer>
+  <span class="footer-logo">Bar Autóctono</span>
+  <span>La Reina, Santiago — Coctelería &amp; Bar</span>
+  <span>© 2026</span>
+</footer>
+
+<!-- FLOAT IG BUTTON -->
+<a class="float-ig" href="https://www.instagram.com/barautoctono" target="_blank" rel="noopener" aria-label="Instagram Bar Autóctono">
+  <span class="float-tooltip">@barautoctono</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</a>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Tabs con data-tab
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + id).classList.add('active');
-      event.currentTarget.classList.add('active');
-    }
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    });
+  });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
-
 </html>
